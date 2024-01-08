@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    labels:
+      - 'dependencies'
+      - 'typescript'
+    schedule:
+      interval: 'weekly'
+
+  - package-ecosystem: 'cargo'
+    directory: '/'
+    labels:
+      - 'dependencies'
+      - 'rust'
+    schedule:
+      interval: 'weekly'
