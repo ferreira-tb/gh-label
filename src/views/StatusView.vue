@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { MButton } from 'manatsu';
-import { useAsyncState } from '@vueuse/core';
-import { invoke } from '@tauri-apps/api/tauri';
+import { MButton, useInvoke } from 'manatsu';
 
-const { state: status, execute } = useAsyncState(
-  () => invoke<string>('auth_status'),
-  null
-);
+const { state: status, execute } = useInvoke<string>('auth_status');
 </script>
 
 <template>

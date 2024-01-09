@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue';
+import { storeToRefs } from 'pinia';
 import {
   MBrand,
   MButton,
   MDynamicLink,
+  MInput,
   MNavbar,
   MScaffold,
   type SidebarItem
 } from 'manatsu';
+import { useConfigStore } from './stores/config';
 import GitHubIcon from './components/GitHubIcon.vue';
+
+const config = useConfigStore();
+const { owner } = storeToRefs(config);
 
 const navbar = shallowRef<InstanceType<typeof MNavbar> | null>(null);
 
@@ -24,7 +30,7 @@ const sidebarItems: SidebarItem[] = [
     :sidebar-item-style="{ width: navbar?.startWidth }"
   >
     <template #header>
-      <MNavbar ref="navbar">
+      <MNavbar ref="navbar" end-class="gap-4">
         <template #start>
           <MBrand :title-link="{ name: 'home' }">
             <template #logo><GitHubIcon class="mr-1" /></template>
@@ -33,6 +39,8 @@ const sidebarItems: SidebarItem[] = [
         </template>
 
         <template #end>
+          <MInput v-model:value="owner" />
+
           <MButton variant="outlined" @click="$router.push({ name: 'status' })">
             <span>Status</span>
           </MButton>
