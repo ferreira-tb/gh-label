@@ -13,6 +13,9 @@ pnpm-debug.log*
 # NPM
 **/node_modules
 dist/
+build/
+.svelte-kit/
+package/
 
 # Cargo
 debug/
@@ -25,7 +28,13 @@ target/
 *.pdb
 
 # Others
+config.json
 coverage/
 .eslintcache
 .stylelintcache
-config.json
+.DS_Store
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
