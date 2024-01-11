@@ -1,5 +1,6 @@
 {
   "prettier.requireConfig": true,
+  "prettier.documentSelectors": ["**/*.svelte"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
@@ -11,9 +12,5 @@
     ".eslintcache": true,
     ".stylelintcache": true
   },
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass"
-  ]
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"]
 }
