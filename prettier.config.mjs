@@ -9,7 +9,5 @@ export default {
   trailingComma: 'none',
   bracketSpacing: true,
   bracketSameLine: false,
-  arrowParens: 'always',
-  vueIndentScriptAndStyle: false,
-  tailwindAttributes: ['sidebar-item-class']
+  arrowParens: 'always'
 };

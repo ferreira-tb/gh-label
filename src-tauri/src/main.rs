@@ -15,7 +15,6 @@ fn auth_status() -> Result<String, String> {
 fn main() {
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![auth_status])
-    .plugin(tauri_plugin_manatsu::init())
     .run(tauri::generate_context!())
     .expect("error while running gh_gui");
 }

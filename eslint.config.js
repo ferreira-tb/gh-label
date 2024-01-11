@@ -1,6 +1,5 @@
 import config from '@tb-dev/eslint-config';
 
 export default config({
-  vue: true,
-  project: ['tsconfig.json', 'tsconfig.node.json']
+  project: ['tsconfig.json', 'tsconfig.eslint.json']
 });
