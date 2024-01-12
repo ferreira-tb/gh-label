@@ -19,4 +19,4 @@ gh auth login
 
 For more information, see the [GitHub CLI documentation](https://cli.github.com/manual/gh_auth_login).
 
-> Rust and the Tauri CLI are only required before building the application with `pnpm run build`. After that, you can run the application without them.
+Rust and the Tauri CLI are only required before building the application with `pnpm run build`. After that, you can run the application without them.
