@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import dev from 'vite-plugin-vue-devtools';
+import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
-  plugins: [vue(), dev()],
+  plugins: [sveltekit()],
   clearScreen: false,
   server: {
     port: 1420,

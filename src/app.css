@@ -1,0 +1,33 @@
+@tailwind utilities;
+
+:root {
+  --font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+  --border-radius: 3px;
+  --box-shadow: 0 1px 2px 0 rgba(0 0 0 / 30%), 0 1px 3px 1px rgba(0 0 0 / 15%);
+
+  --color-background: #191c1a;
+  --color-on-background: #e1e3df;
+  --color-outline: #8a938c;
+  --color-primary: #c30;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  line-height: 1.4;
+  font-family: var(--font-family);
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}

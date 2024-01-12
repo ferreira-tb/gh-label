@@ -1,18 +1,17 @@
 {
   "recommendations": [
-    "vivaxy.vscode-conventional-commits",
     "dbaeumer.vscode-eslint",
+    "vivaxy.vscode-conventional-commits",
     "tamasfe.even-better-toml",
     "donjayamanne.githistory",
     "github.vscode-github-actions",
     "github.vscode-pull-request-github",
     "esbenp.prettier-vscode",
+    "rust-lang.rust-analyzer",
+    "bradlc.vscode-tailwindcss",
     "tauri-apps.tauri-vscode",
-    "vue.vscode-typescript-vue-plugin",
     "vscode-icons-team.vscode-icons",
     "redhat.vscode-yaml",
-    "stylelint.vscode-stylelint",
-    "vue.volar",
-    "bradlc.vscode-tailwindcss"
+    "svelte.svelte-vscode"
   ]
 }

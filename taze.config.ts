@@ -5,8 +5,6 @@ export default defineConfig({
   write: true,
   includeLocked: true,
   packageMode: {
-    vue: 'ignore',
-    '/@tb-dev/': 'major',
-    '/manatsu/': 'major'
+    '/@tb-dev/': 'major'
   }
 });

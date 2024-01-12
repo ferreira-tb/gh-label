@@ -1,7 +1,6 @@
 {
-  "include": ["src/**/*", "src/**/*.vue"],
+  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "module": "esnext",
@@ -12,6 +11,10 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "declaration": false,
+
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
 
     "alwaysStrict": true,
     "noImplicitAny": true,

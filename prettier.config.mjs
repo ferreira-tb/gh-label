@@ -1,6 +1,11 @@
 /** @type {import('prettier').Config} */
 export default {
-  plugins: ['prettier-plugin-css-order', 'prettier-plugin-tailwindcss'],
+  plugins: [
+    'prettier-plugin-svelte',
+    'prettier-plugin-css-order',
+    'prettier-plugin-tailwindcss'
+  ],
+  overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
   printWidth: 80,
   tabWidth: 2,
   useTabs: false,
@@ -10,6 +15,6 @@ export default {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'always',
-  vueIndentScriptAndStyle: false,
-  tailwindAttributes: ['sidebar-item-class']
+  svelteAllowShorthand: true,
+  svelteIndentScriptAndStyle: false
 };
