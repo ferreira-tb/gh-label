@@ -6,9 +6,12 @@
     sans-serif;
 
   --border-radius: 3px;
+  --box-shadow: 0 1px 2px 0 rgba(0 0 0 / 30%), 0 1px 3px 1px rgba(0 0 0 / 15%);
 
   --color-background: #191c1a;
   --color-on-background: #e1e3df;
+  --color-outline: #8a938c;
+  --color-primary: #c30;
 }
 
 html {

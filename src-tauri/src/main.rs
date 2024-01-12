@@ -3,18 +3,34 @@
 
 use miho::gh;
 
-#[tauri::command]
-fn auth_status() -> Result<String, String> {
-  let output = gh!("auth", "status");
-  match output {
-    Ok(out) => Ok(String::from_utf8(out.stdout).unwrap()),
-    Err(err) => Err(err.to_string()),
+#[derive(Debug, thiserror::Error)]
+enum Error {
+  #[error(transparent)]
+  Io(#[from] std::io::Error),
+  #[error(transparent)]
+  Utf8(#[from] std::string::FromUtf8Error),
+}
+
+impl serde::Serialize for Error {
+  fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+  where
+    S: serde::ser::Serializer,
+  {
+    serializer.serialize_str(self.to_string().as_ref())
   }
+}
+
+#[tauri::command]
+fn list(repo: String) -> Result<String, Error> {
+  let fields = "name,description,color";
+  let output = gh!(["label", "list", "--repo", &repo, "--json", fields])?;
+  let stdout = String::from_utf8(output.stdout)?;
+  Ok(stdout)
 }
 
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![auth_status])
+    .invoke_handler(tauri::generate_handler![list])
     .run(tauri::generate_context!())
-    .expect("error while running gh_gui");
+    .expect("error while running gh-label");
 }
