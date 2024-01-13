@@ -23,6 +23,11 @@ label > span {
   user-select: none;
 }
 
+label:focus-within > span {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
 input {
   outline: none;
   border: 1px solid var(--color-outline);

@@ -1,4 +1,5 @@
 export const enum Command {
+  Delete = 'delete_label',
   List = 'list_labels'
 }
 

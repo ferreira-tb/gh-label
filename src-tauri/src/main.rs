@@ -27,16 +27,17 @@ impl serde::Serialize for Error {
 
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all(serialize = "snake_case", deserialize = "camelCase"))]
-struct RepositoryLabel {
+struct GhLabel {
   color: String,
   description: String,
   name: String,
 }
 
+/// https://cli.github.com/manual/gh_label_list
 #[tauri::command]
-fn list_labels(repo: String) -> Result<Vec<RepositoryLabel>, Error> {
+fn list_labels(repo: String) -> Result<Vec<GhLabel>, Error> {
   let fields = "name,description,color";
-  let output = gh!(["label", "list", "--repo", &repo, "--json", fields, "--limit", "100"])?;
+  let output = gh!(["label", "list", "--repo", &repo, "--json", fields, "--limit", "500"])?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;
@@ -44,13 +45,26 @@ fn list_labels(repo: String) -> Result<Vec<RepositoryLabel>, Error> {
   }
 
   let stdout = String::from_utf8(output.stdout)?;
-  let labels: Vec<RepositoryLabel> = serde_json::from_str(&stdout)?;
+  let labels: Vec<GhLabel> = serde_json::from_str(&stdout)?;
   Ok(labels)
+}
+
+/// https://cli.github.com/manual/gh_label_delete
+#[tauri::command]
+fn delete_label(repo: String, label: String) -> Result<(), Error> {
+  let output = gh!(["label", "delete", &label, "--yes", "--repo", &repo])?;
+
+  if !output.status.success() {
+    let stderr = String::from_utf8(output.stderr)?;
+    return Err(Error::Cli(stderr));
+  }
+
+  Ok(())
 }
 
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![list_labels])
+    .invoke_handler(tauri::generate_handler![list_labels, delete_label])
     .run(tauri::generate_context!())
     .expect("error while running gh-label");
 }

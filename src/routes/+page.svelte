@@ -3,47 +3,16 @@ import '../app.css';
 import Input from '$lib/components/Input.svelte';
 import Button from '$lib/components/Button.svelte';
 import Table from '$lib/components/Table.svelte';
+import Loading from '$lib/icons/Loading.svelte';
 import { onMount } from 'svelte';
-import { invoke } from '@tauri-apps/api';
-import { owner, repo, labels } from '$lib/stores';
-import { Command, StorageKey } from '$lib/enum';
+import { owner, repo, labels, error, target, loading } from '$lib/stores';
+import { listLabels } from '$lib/label';
 
-$: localStorage.setItem(StorageKey.Owner, $owner);
-$: localStorage.setItem(StorageKey.Repository, $repo);
-
-let loading = false;
-let error: string | null = null;
-
-$: isReady = Boolean($owner && $repo && !loading);
+$: isReady = Boolean($owner && $repo && !$loading);
 $: $labels.sort((a, b) => a.name.localeCompare(b.name));
 
-async function getLabels() {
-  try {
-    error = null;
-    loading = true;
-
-    const target = `${$owner}/${$repo}`;
-    const result = await invoke<RepositoryLabel[]>(Command.List, {
-      repo: target
-    });
-
-    if (Array.isArray(result)) {
-      labels.set(result);
-    }
-  } catch (err) {
-    if (err instanceof Error) {
-      error = err.message;
-      labels.set([]);
-    }
-  } finally {
-    loading = false;
-  }
-}
-
 onMount(() => {
-  if ($owner && $repo) {
-    getLabels();
-  }
+  if ($owner && $repo) listLabels($target);
 });
 </script>
 
@@ -52,11 +21,17 @@ onMount(() => {
     <div>
       <Input label="Owner" bind:value={$owner} />
       <Input label="Repository" bind:value={$repo} />
-      <Button disabled={!isReady} on:click={getLabels}>Get</Button>
+      <Button disabled={!isReady} on:click={() => listLabels($target)}>
+        <span>Fetch</span>
+      </Button>
     </div>
-    {#if error}
-      <div id="error-message">{error}</div>
+    {#if $error}
+      <div id="error-message">{$error}</div>
     {/if}
+  </div>
+
+  <div id="loading" class:visible={$loading}>
+    <Loading width="2rem" height="2rem" />
   </div>
 
   {#if $labels.length > 0}
@@ -95,14 +70,25 @@ main {
   align-self: flex-end;
 }
 
+#loading {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#loading.visible {
+  display: initial;
+}
+
 #error-message {
   margin: 1rem;
   color: #ff0000;
-  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 #table {
-  width: 100%;
+  width: 100vw;
   overflow-x: hidden;
 }
 </style>

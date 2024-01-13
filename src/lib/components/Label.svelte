@@ -1,5 +1,5 @@
 <script lang="ts">
-export let label: RepositoryLabel;
+export let label: GhLabel;
 
 $: hex = label.color;
 $: rgb = hexToRgb(hex);
@@ -21,8 +21,8 @@ function hexToRgb(hex: string): RgbColor {
 
 function rgbToHsl(rgb: RgbColor): HslColor {
   const { r, g, b } = Object.entries(rgb).reduce(
-    (acc, [k, v]: [keyof RgbColor, number]) => {
-      acc[k] = v / 255;
+    (acc, [key, value]: [keyof RgbColor, number]) => {
+      acc[key] = value / 255;
       return acc;
     },
     {} as RgbColor

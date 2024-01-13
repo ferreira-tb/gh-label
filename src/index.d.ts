@@ -1,7 +1,8 @@
-interface RepositoryLabel {
+interface GhLabel {
   color: string;
   description: string;
   name: string;
+  source?: string | null;
 }
 
 interface RgbColor {
