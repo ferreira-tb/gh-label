@@ -1,8 +1,18 @@
 # gh-label
 
+Clone this repository and run the following commands to build the app:
+
 ```bash
 cargo install tauri-cli
 pnpm install
+pnpm run build
+```
+
+> The built app can be found in the `src-tauri/target/release` directory.
+
+It's also possible to run the app without building it:
+
+```bash
 pnpm run dev
 ```
 
@@ -20,4 +30,4 @@ gh auth login
 
 For more information, see the [GitHub CLI documentation](https://cli.github.com/manual/gh_auth_login).
 
-Rust and [Tauri](https://tauri.app/v1/guides/) are only required before building the app with `pnpm run build`. After that, you can run it without them.
+Rust and [Tauri](https://tauri.app/v1/guides/) are only required **before** building the app with `pnpm run build`. After that, you can run it without them.
