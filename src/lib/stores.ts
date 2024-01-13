@@ -1,12 +1,6 @@
 import { writable } from 'svelte/store';
+import { StorageKey } from './storage';
 
-export const owner = writable(localStorage.getItem('gh-label:owner') ?? '');
-export const repo = writable(localStorage.getItem('gh-label:repo') ?? '');
-
-owner.subscribe((value) => {
-  localStorage.setItem('gh-label:owner', value);
-});
-
-repo.subscribe((value) => {
-  localStorage.setItem('gh-label:repo', value);
-});
+export const owner = writable(localStorage.getItem(StorageKey.Owner) ?? '');
+export const repo = writable(localStorage.getItem(StorageKey.Repository) ?? '');
+export const labels = writable<RepositoryLabel[]>([]);
