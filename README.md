@@ -10,6 +10,7 @@ pnpm run dev
 
 - [GitHub CLI](https://cli.github.com/)
 - [Rust](https://www.rust-lang.org/tools/install)
+- [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites)
 
 You must make sure that you have the GitHub CLI installed and authenticated. You can authenticate with the following command:
 

@@ -2,17 +2,20 @@
 import '../app.css';
 import Input from '$lib/components/Input.svelte';
 import Button from '$lib/components/Button.svelte';
+import Table from '$lib/components/Table.svelte';
+import { onMount } from 'svelte';
 import { invoke } from '@tauri-apps/api';
 import { owner, repo, labels } from '$lib/stores';
-import { StorageKey } from '$lib/storage';
+import { Command, StorageKey } from '$lib/enum';
 
 $: localStorage.setItem(StorageKey.Owner, $owner);
 $: localStorage.setItem(StorageKey.Repository, $repo);
 
-let error: string | null = null;
 let loading = false;
+let error: string | null = null;
 
-$: buttonDisabled = !$owner || !$repo || loading;
+$: isReady = Boolean($owner && $repo && !loading);
+$: $labels.sort((a, b) => a.name.localeCompare(b.name));
 
 async function getLabels() {
   try {
@@ -20,7 +23,7 @@ async function getLabels() {
     loading = true;
 
     const target = `${$owner}/${$repo}`;
-    const result = await invoke<RepositoryLabel[]>('list_labels', {
+    const result = await invoke<RepositoryLabel[]>(Command.List, {
       repo: target
     });
 
@@ -36,23 +39,31 @@ async function getLabels() {
     loading = false;
   }
 }
+
+onMount(() => {
+  if ($owner && $repo) {
+    getLabels();
+  }
+});
 </script>
 
 <main>
-  <header>
-    <h1>gh label</h1>
-  </header>
-
   <div id="toolbar">
     <div>
       <Input label="Owner" bind:value={$owner} />
       <Input label="Repository" bind:value={$repo} />
-      <Button disabled={buttonDisabled} on:click={getLabels}>Get Labels</Button>
+      <Button disabled={!isReady} on:click={getLabels}>Get</Button>
     </div>
     {#if error}
       <div id="error-message">{error}</div>
     {/if}
   </div>
+
+  {#if $labels.length > 0}
+    <div id="table">
+      <Table />
+    </div>
+  {/if}
 </main>
 
 <style>
@@ -65,20 +76,12 @@ main {
   inset: 0;
 }
 
-header {
-  user-select: none;
-}
-
-h1 {
-  margin: 1rem;
-  font-size: 2rem;
-}
-
 #toolbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1rem 0 1rem;
 }
 
 #toolbar > div:first-child {
@@ -88,7 +91,7 @@ h1 {
   gap: 1rem;
 }
 
-#toolbar > div:first-child > :global(button) {
+#toolbar :global(button) {
   align-self: flex-end;
 }
 
@@ -96,5 +99,10 @@ h1 {
   margin: 1rem;
   color: #ff0000;
   font-size: 0.8rem;
+}
+
+#table {
+  width: 100%;
+  overflow-x: hidden;
 }
 </style>
