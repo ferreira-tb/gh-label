@@ -1,12 +1,13 @@
 <script lang="ts">
 import { labels } from '$lib/stores';
+import Label from './Label.svelte';
 </script>
 
 <table>
   <tbody>
     {#each $labels as label}
       <tr>
-        <td>{label.name}</td>
+        <td><Label {label} /></td>
         <td>{label.description}</td>
       </tr>
     {/each}

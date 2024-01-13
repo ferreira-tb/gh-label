@@ -36,4 +36,4 @@ Rust and [Tauri](https://tauri.app/v1/guides/) are only required **before** buil
 
 [MIT](https://raw.githubusercontent.com/ferreira-tb/gh-label/main/LICENSE)
 
-Copyright (c) 2023 Andrew Ferreira
+Copyright (c) 2024 Andrew Ferreira
