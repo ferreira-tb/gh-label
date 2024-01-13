@@ -31,3 +31,9 @@ gh auth login
 For more information, see the [GitHub CLI documentation](https://cli.github.com/manual/gh_auth_login).
 
 Rust and [Tauri](https://tauri.app/v1/guides/) are only required **before** building the app with `pnpm run build`. After that, you can run it without them.
+
+## License
+
+[MIT](https://raw.githubusercontent.com/ferreira-tb/gh-label/main/LICENSE)
+
+Copyright (c) 2023 Andrew Ferreira
