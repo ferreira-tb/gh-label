@@ -49,6 +49,40 @@ fn list_labels(repo: String) -> Result<Vec<GhLabel>, Error> {
   Ok(labels)
 }
 
+/// https://cli.github.com/manual/gh_label_create
+#[tauri::command]
+fn create_label(repo: String, label: GhLabel) -> Result<(), Error> {
+  let mut args = vec![
+    "label",
+    "create",
+    &label.name,
+    "--repo",
+    &repo,
+    "--color",
+    &label.color,
+  ];
+
+  if !label.description.is_empty() {
+    args.push("--description");
+    args.push(&label.description);
+  }
+
+  let output = gh!(args)?;
+
+  if !output.status.success() {
+    let stderr = String::from_utf8(output.stderr)?;
+    return Err(Error::Cli(stderr));
+  }
+
+  Ok(())
+}
+
+/// https://cli.github.com/manual/gh_label_edit
+#[tauri::command]
+fn edit_label() {
+  todo!()
+}
+
 /// https://cli.github.com/manual/gh_label_delete
 #[tauri::command]
 fn delete_label(repo: String, label: String) -> Result<(), Error> {
@@ -64,7 +98,12 @@ fn delete_label(repo: String, label: String) -> Result<(), Error> {
 
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![list_labels, delete_label])
+    .invoke_handler(tauri::generate_handler![
+      list_labels,
+      create_label,
+      edit_label,
+      delete_label
+    ])
     .run(tauri::generate_context!())
     .expect("error while running gh-label");
 }

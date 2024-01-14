@@ -16,3 +16,5 @@ interface HslColor {
   s: number;
   l: number;
 }
+
+type EditorMode = 'edit' | 'create';

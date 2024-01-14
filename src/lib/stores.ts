@@ -21,5 +21,9 @@ export const target = derived([owner, repo], ([$owner, $repo]) => {
 
 export const labels = writable<GhLabel[]>([]);
 
+labels.subscribe((value) => {
+  value.sort((a, b) => a.name.localeCompare(b.name));
+});
+
 export const loading = writable(false);
 export const error = writable<string | null>(null);

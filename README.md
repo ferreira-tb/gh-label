@@ -8,7 +8,7 @@ pnpm install
 pnpm run build
 ```
 
-> The built app can be found in the `src-tauri/target/release` directory.
+The built app can be found in the `src-tauri/target/release` directory.
 
 It's also possible to run the app without building it:
 

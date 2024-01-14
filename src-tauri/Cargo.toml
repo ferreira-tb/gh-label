@@ -19,7 +19,7 @@ thiserror = "1.0.56"
 
 [dependencies.tauri]
 version = "1.5"
-features = []
+features = ["dialog-confirm"]
 
 [dependencies.serde]
 version = "1.0"

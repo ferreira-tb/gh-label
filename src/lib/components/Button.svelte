@@ -1,8 +1,9 @@
 <script lang="ts">
 export let disabled = false;
+export let buttonType: 'button' | 'submit' = 'button';
 </script>
 
-<button type="button" class="button" {disabled} on:click>
+<button type={buttonType} {disabled} on:click>
   <slot />
 </button>
 
@@ -22,8 +23,8 @@ button {
   color: inherit;
   font-size: 1em;
   font-family: inherit;
-  text-align: center;
   user-select: none;
+  text-align: center;
 }
 
 button:hover {

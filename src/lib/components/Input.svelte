@@ -1,5 +1,5 @@
 <script lang="ts">
-export let value = '';
+export let value: string | null = null;
 export let label: string | null = null;
 export let placeholder: string | null = null;
 </script>
@@ -8,7 +8,7 @@ export let placeholder: string | null = null;
   {#if label}
     <span>{label}</span>
   {/if}
-  <input type="text" bind:value {placeholder} />
+  <input type="text" bind:value {placeholder} on:keydown />
 </label>
 
 <style>
@@ -21,11 +21,6 @@ label > span {
   margin-bottom: 0.2em;
   font-size: 0.8em;
   user-select: none;
-}
-
-label:focus-within > span {
-  color: var(--color-primary);
-  font-weight: bold;
 }
 
 input {

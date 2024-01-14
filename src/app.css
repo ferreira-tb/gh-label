@@ -29,3 +29,11 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+dialog {
+  box-shadow: var(--box-shadow);
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
