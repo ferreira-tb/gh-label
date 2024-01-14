@@ -2,7 +2,7 @@ interface GhLabel {
   color: string;
   description: string;
   name: string;
-  source?: string | null;
+  repo?: string | null;
 }
 
 interface RgbColor {

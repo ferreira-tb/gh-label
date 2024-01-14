@@ -7,7 +7,7 @@ import Sync from '$lib/icons/Sync.svelte';
 import Loading from '$lib/icons/Loading.svelte';
 import { createEmptyLabel, generateRandomColor } from '$lib/utils';
 import { editLabel, createLabel } from '$lib/label';
-import { loading, target } from '$lib/stores';
+import { loading, currentRepo } from '$lib/stores';
 
 let dialog: HTMLDialogElement | null = null;
 let mode: EditorMode = 'create';
@@ -45,8 +45,8 @@ async function save() {
 
   if (mode === 'edit' && originalName && originalName !== label.name) {
     await editLabel(originalName, label);
-  } else {
-    label.source = $target;
+  } else if ($currentRepo) {
+    label.repo = $currentRepo;
     await createLabel(label);
   }
 

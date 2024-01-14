@@ -2,19 +2,17 @@ import { get } from 'svelte/store';
 import { Command } from '$lib/enum';
 import { invoke } from '@tauri-apps/api';
 import { confirm } from '@tauri-apps/api/dialog';
-import { error, labels, loading, target } from '$lib/stores';
+import { currentRepo, error, labels, loading } from '$lib/stores';
 
-export async function listLabels(targetRepo: string | null) {
+export async function listLabels(repo: string | null) {
   try {
     labels.set([]);
-    prepareCommand(targetRepo);
+    prepareCommand(repo);
 
-    const result = await invoke<GhLabel[]>(Command.List, {
-      repo: targetRepo
-    });
+    const result = await invoke<GhLabel[]>(Command.List, { repo });
 
     if (Array.isArray(result)) {
-      labels.set(result.map((item) => ({ ...item, source: targetRepo })));
+      labels.set(result.map((item) => ({ ...item, repo })));
     }
   } catch (err) {
     handleError(err);
@@ -25,9 +23,9 @@ export async function listLabels(targetRepo: string | null) {
 
 export async function createLabel(label: GhLabel) {
   try {
-    prepareCommand(label.source);
+    prepareCommand(label.repo);
     await invoke(Command.Create, {
-      repo: label.source,
+      repo: label.repo,
       label
     });
 
@@ -43,9 +41,9 @@ export async function createLabel(label: GhLabel) {
 
 export async function editLabel(originalName: string, label: GhLabel) {
   try {
-    prepareCommand(label.source);
+    prepareCommand(label.repo);
     await invoke(Command.Edit, {
-      repo: label.source,
+      repo: label.repo,
       label,
       originalName
     });
@@ -53,7 +51,7 @@ export async function editLabel(originalName: string, label: GhLabel) {
     if (get(labels).some(isFromSameSource)) {
       labels.update((prev) => {
         return prev.map((item) => {
-          if (item.source === label.source && item.name === originalName) {
+          if (item.repo === label.repo && item.name === originalName) {
             return label;
           }
 
@@ -70,7 +68,7 @@ export async function editLabel(originalName: string, label: GhLabel) {
 
 export async function deleteLabel(label: GhLabel) {
   try {
-    prepareCommand(label.source);
+    prepareCommand(label.repo);
 
     const confirmed = await confirm(
       'Are you sure you want to delete this label?',
@@ -83,13 +81,13 @@ export async function deleteLabel(label: GhLabel) {
     if (!confirmed) return;
 
     await invoke(Command.Delete, {
-      repo: label.source,
+      repo: label.repo,
       label: label.name
     });
 
     labels.update((prev) => {
       return prev.filter((item) => {
-        if (item.source === label.source) {
+        if (item.repo === label.repo) {
           return item.name !== label.name;
         }
 
@@ -124,5 +122,8 @@ function handleError(err: unknown) {
 }
 
 function isFromSameSource(label: GhLabel) {
-  return label.source === get(target);
+  const repoName = get(currentRepo);
+  if (!repoName) return false;
+
+  return label.repo === repoName;
 }

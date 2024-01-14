@@ -6,10 +6,17 @@ import Grid from '$lib/components/Grid.svelte';
 import Loading from '$lib/icons/Loading.svelte';
 import Editor from '$lib/components/Editor.svelte';
 import { onMount } from 'svelte';
-import { owner, repo, labels, error, target, loading } from '$lib/stores';
+import {
+  owner,
+  repoName,
+  labels,
+  error,
+  currentRepo,
+  loading
+} from '$lib/stores';
 import { cloneLabels, listLabels } from '$lib/label';
 
-$: isReady = Boolean($owner && $repo && !$loading);
+$: isReady = Boolean($currentRepo && !$loading);
 
 let editor: Editor | null = null;
 
@@ -17,12 +24,12 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter' && isReady) {
     e.preventDefault();
     e.stopPropagation();
-    listLabels($target);
+    listLabels($currentRepo);
   }
 }
 
 onMount(() => {
-  if ($owner && $repo) listLabels($target);
+  if ($currentRepo) listLabels($currentRepo);
 });
 </script>
 
@@ -30,10 +37,10 @@ onMount(() => {
   <div id="toolbar">
     <div>
       <Input label="Owner" bind:value={$owner} on:keydown={onKeydown} />
-      <Input label="Repository" bind:value={$repo} on:keydown={onKeydown} />
+      <Input label="Repository" bind:value={$repoName} on:keydown={onKeydown} />
 
       <div class="actions">
-        <Button disabled={!isReady} on:click={() => listLabels($target)}>
+        <Button disabled={!isReady} on:click={() => listLabels($currentRepo)}>
           <span>Fetch</span>
         </Button>
         <Button disabled={!isReady} on:click={() => editor?.open('create')}>

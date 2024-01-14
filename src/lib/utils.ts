@@ -3,7 +3,7 @@ export function createEmptyLabel(): GhLabel {
     name: 'label',
     description: '',
     color: generateRandomColor(),
-    source: null
+    repo: null
   };
 }
 
