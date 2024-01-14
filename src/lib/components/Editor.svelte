@@ -43,7 +43,7 @@ export async function open(editorMode: EditorMode, ghLabel?: GhLabel) {
 async function save() {
   if (!dialog) return;
 
-  if (mode === 'edit' && originalName && originalName !== label.name) {
+  if (mode === 'edit' && originalName) {
     await editLabel(originalName, label);
   } else if ($currentRepo) {
     label.repo = $currentRepo;
