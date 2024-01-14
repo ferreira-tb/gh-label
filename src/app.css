@@ -37,3 +37,14 @@ dialog {
   background-color: var(--color-background);
   color: var(--color-on-background);
 }
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.loading.visible {
+  display: initial;
+}

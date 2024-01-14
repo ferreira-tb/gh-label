@@ -79,8 +79,27 @@ fn create_label(repo: String, label: GhLabel) -> Result<(), Error> {
 
 /// https://cli.github.com/manual/gh_label_edit
 #[tauri::command]
-fn edit_label() {
-  todo!()
+fn edit_label(repo: String, original_name: String, label: GhLabel) -> Result<(), Error> {
+  let output = gh!([
+    "label",
+    "edit",
+    &original_name,
+    "--repo",
+    &repo,
+    "--name",
+    &label.name,
+    "--color",
+    &label.color,
+    "--description",
+    &label.description
+  ])?;
+
+  if !output.status.success() {
+    let stderr = String::from_utf8(output.stderr)?;
+    return Err(Error::Cli(stderr));
+  }
+
+  Ok(())
 }
 
 /// https://cli.github.com/manual/gh_label_delete

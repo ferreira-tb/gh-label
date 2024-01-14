@@ -9,10 +9,6 @@ import Delete from '$lib/icons/Delete.svelte';
 const dispatch = createEventDispatcher<{
   edit: GhLabel;
 }>();
-
-function editLabel(label: GhLabel) {
-  dispatch('edit', label);
-}
 </script>
 
 <div id="label-grid">
@@ -20,7 +16,7 @@ function editLabel(label: GhLabel) {
     <div><Label {label} /></div>
     <div>{label.description}</div>
     <div class="action">
-      <Edit on:click={() => editLabel(label)} />
+      <Edit on:click={() => dispatch('edit', label)} />
       <Delete on:click={() => deleteLabel(label)} />
     </div>
   {/each}

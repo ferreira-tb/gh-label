@@ -97,17 +97,6 @@ main {
   height: 100%;
 }
 
-.loading {
-  display: none;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.loading.visible {
-  display: initial;
-}
-
 .error-message {
   margin: 1rem;
   color: #ff0000;

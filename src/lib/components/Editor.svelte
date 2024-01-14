@@ -10,24 +10,27 @@ import { editLabel, createLabel } from '$lib/label';
 import { loading, target } from '$lib/stores';
 
 let dialog: HTMLDialogElement | null = null;
-let label = createEmptyLabel();
 let mode: EditorMode = 'create';
+let label = createEmptyLabel();
+let originalName: string | null = null;
 
 $: isReady = Boolean(!$loading && label.name.length > 0);
 
 let colorPickerValue = '#000000';
 $: label.color = colorPickerValue.replace('#', '');
 
-export async function open(mode: 'create'): Promise<void>;
-export async function open(mode: 'edit', ghLabel: GhLabel): Promise<void>;
-export async function open(mode: EditorMode, ghLabel?: GhLabel) {
+export async function open(editorMode: 'create'): Promise<void>;
+export async function open(editorMode: 'edit', ghLabel: GhLabel): Promise<void>;
+export async function open(editorMode: EditorMode, ghLabel?: GhLabel) {
   if (!dialog) return;
 
-  if (mode === 'edit' && ghLabel) {
-    label = ghLabel;
+  if (editorMode === 'edit' && ghLabel) {
+    label = { ...ghLabel };
+    originalName = ghLabel.name;
     mode = 'edit';
   } else {
     label = createEmptyLabel();
+    originalName = null;
     mode = 'create';
   }
 
@@ -40,21 +43,25 @@ export async function open(mode: EditorMode, ghLabel?: GhLabel) {
 async function save() {
   if (!dialog) return;
 
-  if (mode === 'edit') {
-    await editLabel(label);
+  if (mode === 'edit' && originalName && originalName !== label.name) {
+    await editLabel(originalName, label);
   } else {
     label.source = $target;
     await createLabel(label);
   }
 
+  cleanup();
   dialog.close();
 }
 
+function cleanup() {
+  mode = 'create';
+  label = createEmptyLabel();
+  originalName = null;
+}
+
 onMount(() => {
-  dialog?.addEventListener('close', () => {
-    mode = 'create';
-    label = createEmptyLabel();
-  });
+  dialog?.addEventListener('close', cleanup);
 });
 </script>
 
@@ -83,10 +90,10 @@ onMount(() => {
     </div>
 
     <div>
-      <Button buttonType="button" on:click={() => dialog?.close()}>
+      <Button on:click={() => dialog?.close()}>
         <span>Cancel</span>
       </Button>
-      <Button buttonType="submit" disabled={!isReady} on:click={() => save()}>
+      <Button disabled={!isReady} on:click={save}>
         <span>Save</span>
       </Button>
     </div>
@@ -149,16 +156,5 @@ div:has(> button) {
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-}
-
-.loading {
-  display: none;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.loading.visible {
-  display: initial;
 }
 </style>
