@@ -73,6 +73,12 @@ dialog > form div:has(> button) {
   width: 100%;
 }
 
+.error-message {
+  margin: 1rem;
+  color: #ff0000;
+  font-weight: bold;
+}
+
 .loading {
   display: none;
   position: absolute;
