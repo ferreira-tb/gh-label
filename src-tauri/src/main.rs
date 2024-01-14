@@ -33,6 +33,23 @@ struct GhLabel {
   name: String,
 }
 
+/// https://cli.github.com/manual/gh_auth_status
+#[tauri::command]
+fn is_logged_in() -> Result<bool, Error> {
+  let output = gh!(["auth", "status"])?;
+
+  if !output.status.success() {
+    let stderr = String::from_utf8(output.stderr)?;
+    return Err(Error::Cli(stderr));
+  }
+
+  let stdout = String::from_utf8(output.stdout)?;
+  let stdout = stdout.to_lowercase();
+  let is_logged_in = stdout.contains("logged in to github.com");
+
+  Ok(is_logged_in)
+}
+
 /// https://cli.github.com/manual/gh_label_list
 #[tauri::command]
 fn list_labels(repo: String) -> Result<Vec<GhLabel>, Error> {
@@ -131,6 +148,7 @@ fn clone_labels(source: String, target: String) -> Result<(), Error> {
 fn main() {
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![
+      is_logged_in,
       list_labels,
       create_label,
       edit_label,
