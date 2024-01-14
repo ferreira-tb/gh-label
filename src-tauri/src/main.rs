@@ -1,8 +1,10 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use miho::gh;
+mod gh;
+
 use serde::{Deserialize, Serialize};
+use gh::gh;
 
 #[derive(Debug, thiserror::Error)]
 enum Error {
@@ -36,7 +38,8 @@ struct GhLabel {
 /// https://cli.github.com/manual/gh_auth_status
 #[tauri::command]
 fn is_logged_in() -> Result<bool, Error> {
-  let output = gh!(["auth", "status"])?;
+  let args = vec!["auth", "status"];
+  let output = gh(args)?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;
@@ -54,7 +57,8 @@ fn is_logged_in() -> Result<bool, Error> {
 #[tauri::command]
 fn list_labels(repo: String) -> Result<Vec<GhLabel>, Error> {
   let fields = "name,description,color";
-  let output = gh!(["label", "list", "--repo", &repo, "--json", fields, "--limit", "500"])?;
+  let args = vec!["label", "list", "--repo", &repo, "--json", fields, "--limit", "500"];
+  let output = gh(args)?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;
@@ -84,7 +88,7 @@ fn create_label(repo: String, label: GhLabel) -> Result<(), Error> {
     args.push(&label.description);
   }
 
-  let output = gh!(args)?;
+  let output = gh(args)?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;
@@ -97,7 +101,7 @@ fn create_label(repo: String, label: GhLabel) -> Result<(), Error> {
 /// https://cli.github.com/manual/gh_label_edit
 #[tauri::command]
 fn edit_label(repo: String, original_name: String, label: GhLabel) -> Result<(), Error> {
-  let output = gh!([
+  let args = vec![
     "label",
     "edit",
     &original_name,
@@ -109,7 +113,9 @@ fn edit_label(repo: String, original_name: String, label: GhLabel) -> Result<(),
     &label.color,
     "--description",
     &label.description
-  ])?;
+  ];
+
+  let output = gh(args)?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;
@@ -122,7 +128,8 @@ fn edit_label(repo: String, original_name: String, label: GhLabel) -> Result<(),
 /// https://cli.github.com/manual/gh_label_delete
 #[tauri::command]
 fn delete_label(repo: String, label: String) -> Result<(), Error> {
-  let output = gh!(["label", "delete", &label, "--yes", "--repo", &repo])?;
+  let args = vec!["label", "delete", &label, "--yes", "--repo", &repo];
+  let output = gh(args)?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;
@@ -135,7 +142,8 @@ fn delete_label(repo: String, label: String) -> Result<(), Error> {
 /// https://cli.github.com/manual/gh_label_clone
 #[tauri::command]
 fn clone_labels(source: String, target: String) -> Result<(), Error> {
-  let output = gh!(["label", "clone", &source, "--repo", &target, "--force"])?;
+  let args = vec!["label", "clone", &source, "--repo", &target, "--force"];
+  let output = gh(args)?;
 
   if !output.status.success() {
     let stderr = String::from_utf8(output.stderr)?;

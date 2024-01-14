@@ -12,5 +12,5 @@
     ".eslintcache": true,
     ".stylelintcache": true
   },
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass"]
+  "rust-analyzer.showUnlinkedFileNotification": false
 }
