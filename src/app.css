@@ -31,11 +31,46 @@ a {
 }
 
 dialog {
+  position: relative;
   box-shadow: var(--box-shadow);
   border: none;
   border-radius: var(--border-radius);
   background-color: var(--color-background);
   color: var(--color-on-background);
+}
+
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.6);
+}
+
+dialog > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+dialog > form div:has(input[type='text']) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+dialog > form div:has(input[type='text']) {
+  width: 100%;
+}
+
+dialog > form div:has(> button) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .loading {

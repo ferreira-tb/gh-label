@@ -1,11 +1,13 @@
 <script lang="ts">
 import '../app.css';
+import { onMount } from 'svelte';
+import { listLabels } from '$lib/label';
 import Input from '$lib/components/Input.svelte';
 import Button from '$lib/components/Button.svelte';
 import Grid from '$lib/components/Grid.svelte';
 import Loading from '$lib/icons/Loading.svelte';
 import Editor from '$lib/components/Editor.svelte';
-import { onMount } from 'svelte';
+import Clone from '$lib/components/Clone.svelte';
 import {
   owner,
   repoName,
@@ -14,11 +16,11 @@ import {
   currentRepo,
   loading
 } from '$lib/stores';
-import { cloneLabels, listLabels } from '$lib/label';
 
 $: isReady = Boolean($currentRepo && !$loading);
 
 let editor: Editor | null = null;
+let cloneDialog: Clone | null = null;
 
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter' && isReady) {
@@ -48,7 +50,7 @@ onMount(() => {
         </Button>
         <Button
           disabled={!isReady || $labels.length === 0}
-          on:click={() => cloneLabels()}
+          on:click={() => cloneDialog?.open()}
         >
           <span>Clone</span>
         </Button>
@@ -61,6 +63,7 @@ onMount(() => {
   </div>
 
   <Editor bind:this={editor} />
+  <Clone bind:this={cloneDialog} />
 
   <div class="loading" class:visible={$loading}>
     <Loading width="2rem" height="2rem" />

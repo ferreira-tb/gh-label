@@ -115,13 +115,27 @@ fn delete_label(repo: String, label: String) -> Result<(), Error> {
   Ok(())
 }
 
+/// https://cli.github.com/manual/gh_label_clone
+#[tauri::command]
+fn clone_labels(source: String, target: String) -> Result<(), Error> {
+  let output = gh!(["label", "clone", &source, "--repo", &target, "--force"])?;
+
+  if !output.status.success() {
+    let stderr = String::from_utf8(output.stderr)?;
+    return Err(Error::Cli(stderr));
+  }
+
+  Ok(())
+}
+
 fn main() {
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![
       list_labels,
       create_label,
       edit_label,
-      delete_label
+      delete_label,
+      clone_labels
     ])
     .run(tauri::generate_context!())
     .expect("error while running gh-label");

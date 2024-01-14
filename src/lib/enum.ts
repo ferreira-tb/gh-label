@@ -1,4 +1,5 @@
 export const enum Command {
+  Clone = 'clone_labels',
   Create = 'create_label',
   Delete = 'delete_label',
   Edit = 'edit_label',

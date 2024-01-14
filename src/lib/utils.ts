@@ -1,3 +1,10 @@
+import type { Nullish } from '@tb-dev/utility-types';
+
+export function parseRepoName(owner: Nullish<string>, name: Nullish<string>) {
+  const [o, r] = [owner, name].map((v) => v?.trim());
+  return o && r ? `${o}/${r}` : null;
+}
+
 export function createEmptyLabel(): GhLabel {
   return {
     name: 'label',

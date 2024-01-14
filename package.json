@@ -22,8 +22,7 @@
     "vite:build": "vite build"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.5.3",
-    "@tb-dev/utils": "^1.1.4"
+    "@tauri-apps/api": "^1.5.3"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
@@ -35,7 +34,7 @@
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.2.1",
+    "prettier": "^3.2.2",
     "prettier-plugin-css-order": "^2.0.1",
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.2.8",

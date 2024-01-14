@@ -1,5 +1,9 @@
 # gh-label
 
+<div style="text-align: center;">
+  <img src="./docs/screenshot.png" alt="gh-label screenshot" />
+</div>
+
 Clone this repository and run the following commands to build the app:
 
 ```bash

@@ -1,5 +1,6 @@
+import { StorageKey } from '$lib/enum';
+import { parseRepoName } from '$lib/utils';
 import { derived, writable } from 'svelte/store';
-import { StorageKey } from './enum';
 
 export const owner = writable(localStorage.getItem(StorageKey.Owner) ?? '');
 export const repoName = writable(
@@ -15,9 +16,8 @@ repoName.subscribe((value) => {
 });
 
 /** This is the repository name in the format of `owner/repo`. */
-export const currentRepo = derived([owner, repoName], (values) => {
-  const [o, r] = values.map((value) => value.trim());
-  return o && r ? `${o}/${r}` : null;
+export const currentRepo = derived([owner, repoName], ([o, r]) => {
+  return parseRepoName(o, r);
 });
 
 export const labels = writable<GhLabel[]>([]);

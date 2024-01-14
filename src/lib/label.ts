@@ -2,6 +2,7 @@ import { get } from 'svelte/store';
 import { Command } from '$lib/enum';
 import { invoke } from '@tauri-apps/api';
 import { confirm } from '@tauri-apps/api/dialog';
+import type { Nullish } from '@tb-dev/utility-types';
 import { currentRepo, error, labels, loading } from '$lib/stores';
 
 export async function listLabels(repo: string | null) {
@@ -101,16 +102,36 @@ export async function deleteLabel(label: GhLabel) {
   }
 }
 
-export function cloneLabels() {
-  console.log('clone labels');
+export async function cloneLabels(source: string, target: string) {
+  try {
+    prepareCommand(source, target);
+
+    const confirmed = await confirm(
+      'Labels may be overwritten if they have the same name. Are you sure you want to continue?',
+      {
+        title: 'Clone labels',
+        type: 'warning'
+      }
+    );
+
+    if (!confirmed) return;
+
+    await invoke(Command.Clone, { source, target });
+  } catch (err) {
+    handleError(err);
+  } finally {
+    loading.set(false);
+  }
 }
 
-function prepareCommand(targetRepo?: string | null) {
+function prepareCommand(...repos: Nullish<string>[]) {
   error.set(null);
   loading.set(true);
 
-  if (!targetRepo) {
-    throw new Error('Invalid repository name');
+  for (const repo of repos) {
+    if (!repo) {
+      throw new Error(`Invalid repository name: ${repo}`);
+    }
   }
 }
 

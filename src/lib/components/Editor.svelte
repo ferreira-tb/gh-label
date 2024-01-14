@@ -106,34 +106,7 @@ onMount(() => {
 
 <style>
 dialog {
-  position: relative;
   min-width: 220px;
-}
-
-dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.6);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem;
-}
-
-div:has(> input[type='text']) {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-div:has(> input[type='text']) {
-  width: 100%;
 }
 
 div:has(> input[type='color']) {
@@ -148,13 +121,5 @@ input[type='color'] {
   border: none;
   background-color: transparent;
   padding: 0;
-}
-
-div:has(> button) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
 }
 </style>
