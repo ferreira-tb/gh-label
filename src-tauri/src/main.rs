@@ -3,8 +3,8 @@
 
 mod gh;
 
-use serde::{Deserialize, Serialize};
 use gh::gh;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, thiserror::Error)]
 enum Error {
@@ -57,7 +57,9 @@ fn is_logged_in() -> Result<bool, Error> {
 #[tauri::command]
 fn list_labels(repo: String) -> Result<Vec<GhLabel>, Error> {
   let fields = "name,description,color";
-  let args = vec!["label", "list", "--repo", &repo, "--json", fields, "--limit", "500"];
+  let args = vec![
+    "label", "list", "--repo", &repo, "--json", fields, "--limit", "500",
+  ];
   let output = gh(args)?;
 
   if !output.status.success() {
@@ -112,7 +114,7 @@ fn edit_label(repo: String, original_name: String, label: GhLabel) -> Result<(),
     "--color",
     &label.color,
     "--description",
-    &label.description
+    &label.description,
   ];
 
   let output = gh(args)?;
@@ -155,6 +157,8 @@ fn clone_labels(source: String, target: String) -> Result<(), Error> {
 
 fn main() {
   tauri::Builder::default()
+    .plugin(tauri_plugin_window_state::Builder::default().build())
+    .plugin(tauri_plugin_manatsu::init())
     .invoke_handler(tauri::generate_handler![
       is_logged_in,
       list_labels,

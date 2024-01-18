@@ -1,6 +1,6 @@
 {
   "name": "gh-label",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Simple GUI for editing GitHub labels",
   "type": "module",
   "packageManager": "pnpm@8.14.1",
@@ -14,7 +14,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "cargo tauri dev",
-    "format": "prettier . --write && cargo fmt --manifest-path=src-tauri/Cargo.toml",
+    "format": "prettier . --write && cargo fmt",
     "format-check": "prettier . --check",
     "lint": "eslint . --config eslint.config.js --cache",
     "prepare": "husky install",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
-    "@sveltejs/kit": "^2.3.3",
+    "@sveltejs/kit": "^2.3.5",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@tb-dev/eslint-config": "^1.6.2",
     "@tb-dev/utility-types": "^1.0.10",
