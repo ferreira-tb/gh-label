@@ -80,9 +80,9 @@ dependencies = [
 
 [[package]]
 name = "anstream"
-version = "0.6.9"
+version = "0.6.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fde6067df7359f2d6335ec1a50c1f8f825801687d10da0cc4c6b08e3f6afd15"
+checksum = "6e2e1ebcb11de5c03c67de28a7df593d32191b44939c482e97702baaaa6ab6a5"
 dependencies = [
  "anstyle",
  "anstyle-parse",
@@ -1972,9 +1972,9 @@ dependencies = [
 
 [[package]]
 name = "miho"
-version = "3.7.15"
+version = "3.7.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd4716981966e0e9ba71c153c2b079d2f0d23c81294e43d1d8761267490f7927"
+checksum = "8989d54399b4fe9078232069617a98dbdf9358bcb80ae16539251aa25330dd32"
 dependencies = [
  "anyhow",
  "clap",
@@ -1992,9 +1992,9 @@ dependencies = [
 
 [[package]]
 name = "miho_derive"
-version = "3.7.15"
+version = "3.7.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d29bb3e24b00ec53f7bef1125bae912047ef9f5b0bb08718e4b7cf6d521c1c8f"
+checksum = "7dedd0bda229efb9bf00fba6af96b4697a6629b1e866fd2df90579c47e701df2"
 dependencies = [
  "convert_case 0.6.0",
  "proc-macro2",
