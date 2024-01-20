@@ -1,6 +1,7 @@
 [package]
 name = "gh-label"
 version = "0.2.0"
+publish = false
 
 [package.description]
 workspace = true
@@ -26,7 +27,7 @@ features = []
 
 [dependencies]
 serde_json = "1.0"
-thiserror = "1.0.56"
+thiserror = "1.0"
 tauri-plugin-manatsu = "0.3"
 tauri-plugin-window-state = "0.1"
 

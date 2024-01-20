@@ -23,13 +23,13 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.5.3",
-    "manatsu": "^0.3.1"
+    "manatsu": "^0.3.6"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
-    "@sveltejs/kit": "^2.3.5",
+    "@sveltejs/kit": "^2.4.1",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
-    "@tb-dev/eslint-config": "^1.6.2",
+    "@tb-dev/eslint-config": "^1.6.5",
     "@tb-dev/utility-types": "^1.0.10",
     "@types/node": "^20.11.5",
     "eslint": "^8.56.0",
@@ -43,6 +43,6 @@
     "taze": "^0.13.1",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11"
+    "vite": "^5.0.12"
   }
 }
