@@ -30,7 +30,7 @@
     "@sveltejs/kit": "^2.4.1",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@tb-dev/eslint-config": "^1.6.5",
-    "@tb-dev/utility-types": "^1.0.10",
+    "@tb-dev/utility-types": "^1.1.0",
     "@types/node": "^20.11.5",
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
