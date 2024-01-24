@@ -5,6 +5,7 @@ export default defineConfig({
   write: true,
   includeLocked: true,
   packageMode: {
-    '/@tb-dev/': 'major'
+    '/@tb-dev/': 'major',
+    manatsu: 'major'
   }
 });
