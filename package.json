@@ -1,6 +1,6 @@
 {
   "name": "gh-label",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple GUI for editing GitHub labels",
   "type": "module",
   "packageManager": "pnpm@8.14.3",
@@ -27,11 +27,11 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
-    "@sveltejs/kit": "^2.4.3",
+    "@sveltejs/kit": "^2.5.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@tb-dev/eslint-config": "^1.6.7",
     "@tb-dev/utility-types": "^1.1.0",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.7",
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
