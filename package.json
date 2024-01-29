@@ -28,7 +28,7 @@
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
     "@sveltejs/kit": "^2.5.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tb-dev/eslint-config": "^1.6.7",
     "@tb-dev/utility-types": "^1.1.0",
     "@types/node": "^20.11.7",
