@@ -31,7 +31,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tb-dev/eslint-config": "^1.6.7",
     "@tb-dev/utility-types": "^1.1.0",
-    "@types/node": "^20.11.7",
+    "@types/node": "^20.11.10",
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
