@@ -32,7 +32,7 @@ tauri-plugin-manatsu = "0.4"
 tauri-plugin-window-state = "0.1"
 
 [dependencies.tauri]
-version = "1.5"
+version = "1.6"
 features = ["dialog-confirm"]
 
 [dependencies.serde]
