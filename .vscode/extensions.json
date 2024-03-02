@@ -1,7 +1,7 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
     "vivaxy.vscode-conventional-commits",
+    "dbaeumer.vscode-eslint",
     "tamasfe.even-better-toml",
     "donjayamanne.githistory",
     "github.vscode-github-actions",
@@ -10,7 +10,6 @@
     "rust-lang.rust-analyzer",
     "tauri-apps.tauri-vscode",
     "vscode-icons-team.vscode-icons",
-    "redhat.vscode-yaml",
-    "svelte.svelte-vscode"
+    "vue.volar"
   ]
 }

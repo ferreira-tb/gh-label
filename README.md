@@ -14,7 +14,7 @@ pnpm run build
 
 The built app can be found in the `src-tauri/target/release` directory.
 
-It's also possible to run the app without building it:
+It's also possible to run without building it:
 
 ```bash
 pnpm run dev
@@ -26,7 +26,7 @@ pnpm run dev
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites)
 
-You must make sure that you have the GitHub CLI installed and authenticated. You can authenticate with the following command:
+You must make sure that you have the GitHub CLI installed and authenticated. You can login with the following command:
 
 ```bash
 gh auth login
