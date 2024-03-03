@@ -28,6 +28,7 @@ impl<'a> Command<'a> {
 
     if !output.status.success() {
       let stderr = String::from_utf8_lossy(&output.stderr).into_owned();
+      eprintln!("{stderr}");
       return Err(Error::Cli(stderr));
     }
 

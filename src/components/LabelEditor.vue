@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import Dialog from 'primevue/dialog';
-import Button from 'primevue/button';
 import { invoke } from '@tauri-apps/api';
-import InputText from 'primevue/inputtext';
-import FloatLabel from 'primevue/floatlabel';
 import { Command } from '@manatsu/tauri-plugin';
-import { computed, nextTick, ref, watch } from 'vue';
+import { type CSSProperties, computed, nextTick, ref, watch } from 'vue';
 import { useStore } from '../store';
 import Sync from './icons/Sync.vue';
 import LabelChip from './LabelChip.vue';
@@ -34,11 +30,16 @@ watch(colorPickerValue, (value) => {
   }
 });
 
+const headerStyle: CSSProperties = {
+  justifyContent: 'center',
+  paddingBottom: 0
+};
+
 async function show(editorMode: 'create'): Promise<void>;
 async function show(editorMode: 'edit', ghLabel: GitHubLabel): Promise<void>;
 async function show(editorMode: EditorMode, ghLabel?: GitHubLabel) {
   if (editorMode === 'edit' && ghLabel) {
-    label.value = { ...ghLabel };
+    label.value = structuredClone(ghLabel);
     originalName.value = ghLabel.name;
     mode.value = 'edit';
   } else {
@@ -80,19 +81,29 @@ defineExpose({ show });
 </script>
 
 <template>
-  <Dialog v-model:visible="visible" modal :closable="false" @hide="cleanup">
+  <m-dialog
+    v-model:visible="visible"
+    modal
+    click-outside
+    esc
+    header="Editor"
+    :header-style="headerStyle"
+    storage-key="label-editor"
+    storage-type="local"
+    @hide="cleanup"
+  >
     <div v-if="label" class="editor">
       <LabelChip v-if="label.name.length > 0" :label="label" />
 
       <div class="input-group">
-        <FloatLabel>
-          <InputText id="label-name" v-model="label.name" />
-          <label for="label-name">Name</label>
-        </FloatLabel>
-        <FloatLabel>
-          <InputText id="label-description" v-model="label.description" />
-          <label for="label-description">Description</label>
-        </FloatLabel>
+        <label>
+          <span>Name</span>
+          <m-input-text v-model:value="label.name" />
+        </label>
+        <label>
+          <span>Description</span>
+          <m-input-text v-model:value="label.description" />
+        </label>
       </div>
 
       <div>
@@ -101,15 +112,15 @@ defineExpose({ show });
       </div>
 
       <div>
-        <Button @click="cleanup">
+        <m-button @click="visible = false">
           <span>Cancel</span>
-        </Button>
-        <Button :disabled="!ok" @click="save">
+        </m-button>
+        <m-button :disabled="!ok" @click="save">
           <span>Save</span>
-        </Button>
+        </m-button>
       </div>
     </div>
-  </Dialog>
+  </m-dialog>
 </template>
 
 <style scoped lang="scss">

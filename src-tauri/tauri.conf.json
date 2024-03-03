@@ -2,7 +2,7 @@
   "build": {
     "beforeDevCommand": "pnpm run vite:dev",
     "beforeBuildCommand": "pnpm run vite:build",
-    "devPath": "http://localhost:1420",
+    "devPath": "http://localhost:1421",
     "distDir": "../dist",
     "withGlobalTauri": false
   },

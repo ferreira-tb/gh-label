@@ -41,9 +41,9 @@ dependencies = [
 
 [[package]]
 name = "ahash"
-version = "0.8.10"
+version = "0.8.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8b79b82693f705137f8fb9b37871d99e4f9a7df12b917eed79c3d3954830a60b"
+checksum = "e89da841a80418a9b391ebaea17f5c112ffaaa96f621d2c285b5174da76b9011"
 dependencies = [
  "cfg-if",
  "getrandom 0.2.12",
@@ -2001,7 +2001,7 @@ version = "1.0.0-alpha.54"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07d306844e5af1753490c420c0d6ae3d814b00725092d106332762827ca8f0fe"
 dependencies = [
- "ahash 0.8.10",
+ "ahash 0.8.11",
  "bitflags 2.4.2",
  "const-str",
  "cssparser 0.33.0",
@@ -2102,9 +2102,9 @@ dependencies = [
 
 [[package]]
 name = "manatsu"
-version = "0.4.6"
+version = "0.4.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2de9fc4e5350afd26f797c18e220acdda8b8c92c7fd6852de9a7ef268c3d431d"
+checksum = "338a2f132b87e06fb4c156f043844ee5ae371778f5c06997d8c3dedf04e36e62"
 dependencies = [
  "anyhow",
  "bytes",
@@ -3970,9 +3970,9 @@ dependencies = [
 
 [[package]]
 name = "tauri-plugin-manatsu"
-version = "0.4.7"
+version = "0.4.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4148f0ab8d74d675840e8f3c87bc0924f3254f0f74e6fa561ceaad5e55e140b3"
+checksum = "0aea3187598941d5ecd8f48a96e1672271fb704500e25d996b5d59a93ebb1ea6"
 dependencies = [
  "manatsu",
  "serde",

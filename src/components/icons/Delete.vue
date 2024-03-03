@@ -12,3 +12,14 @@
     />
   </svg>
 </template>
+
+<style scoped lang="scss">
+svg {
+  cursor: pointer;
+  fill: #888888;
+}
+
+svg:hover {
+  fill: var(--m-color-primary);
+}
+</style>

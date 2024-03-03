@@ -97,7 +97,7 @@ async fn delete_label(target: String, label: String) -> Result<()> {
 /// https://cli.github.com/manual/gh_label_clone
 #[tauri::command]
 async fn clone_labels(from: String, to: String) -> Result<()> {
-  Command::new("repo")
+  Command::new("label")
     .arg("clone")
     .arg(&from)
     .repo(&to)

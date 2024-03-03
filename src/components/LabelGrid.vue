@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { toRaw } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useStore } from '../store';
 import Edit from './icons/Edit.vue';
 import Delete from './icons/Delete.vue';
 import LabelChip from './LabelChip.vue';
+
+defineEmits<{
+  // eslint-disable-next-line @typescript-eslint/prefer-function-type
+  (e: 'delete' | 'edit', label: GitHubLabel): void;
+}>();
 
 const store = useStore();
 const { labels } = storeToRefs(store);
@@ -15,8 +21,8 @@ const { labels } = storeToRefs(store);
       <div><LabelChip :label="label" /></div>
       <div>{{ label.description }}</div>
       <div class="action">
-        <Edit />
-        <Delete />
+        <Edit @click="$emit('edit', toRaw(label))" />
+        <Delete @click="$emit('delete', toRaw(label))" />
       </div>
     </template>
   </div>
@@ -26,30 +32,16 @@ const { labels } = storeToRefs(store);
 @use '@manatsu/sass/flex';
 
 .label-grid {
-  $grid-margin: 0.5rem;
-
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 0.5rem;
   cursor: default;
-  margin: $grid-margin;
   border-spacing: 0.5rem;
-  width: calc(100vw - ($grid-margin * 2));
   overflow-x: hidden;
 }
 
 .action {
   @include flex.x-end-y-center;
   gap: 0.5rem;
-  padding-right: 1rem;
-}
-
-.action > :deep(svg) {
-  cursor: pointer;
-  fill: #888888;
-}
-
-.action :deep(svg:hover) {
-  fill: var(--color-primary);
 }
 </style>
