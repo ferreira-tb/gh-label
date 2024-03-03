@@ -1,17 +1,20 @@
 import { defineConfig } from 'vite';
-import { sveltekit } from '@sveltejs/kit/vite';
+import vue from '@vitejs/plugin-vue';
+import dev from 'vite-plugin-vue-devtools';
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  plugins: [vue(), dev()],
   clearScreen: false,
   server: {
-    port: 1420,
+    port: 1421,
     strictPort: true,
     watch: {
       ignored: ['**/src-tauri/**']
     }
   },
   build: {
-    minify: true
+    target: 'esnext',
+    minify: false,
+    sourcemap: false
   }
 });

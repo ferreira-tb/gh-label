@@ -1,6 +1,7 @@
 {
-  "extends": "./.svelte-kit/tsconfig.json",
+  "include": ["src/**/*", "src/**/*.vue", "index.d.ts"],
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "module": "esnext",
@@ -11,10 +12,6 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "declaration": false,
-
-    "allowJs": true,
-    "checkJs": true,
-    "sourceMap": true,
 
     "alwaysStrict": true,
     "noImplicitAny": true,
@@ -32,8 +29,6 @@
     "exactOptionalPropertyTypes": false,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmitOnError": true,
-
-    "types": ["vite/client"]
+    "noEmitOnError": true
   }
 }

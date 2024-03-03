@@ -2,13 +2,13 @@
   "build": {
     "beforeDevCommand": "pnpm run vite:dev",
     "beforeBuildCommand": "pnpm run vite:build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../build",
+    "devPath": "http://localhost:1421",
+    "distDir": "../dist",
     "withGlobalTauri": false
   },
   "package": {
     "productName": "gh-label",
-    "version": "0.2.1"
+    "version": "0.3.0"
   },
   "tauri": {
     "allowlist": {
@@ -43,7 +43,7 @@
         "height": 600,
         "visible": false,
         "fullscreen": false,
-        "resizable": true
+        "resizable": false
       }
     ]
   }

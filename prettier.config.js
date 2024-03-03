@@ -1,8 +1,7 @@
 /** @type {import('prettier').Config} */
 export default {
-  plugins: ['prettier-plugin-svelte', 'prettier-plugin-css-order'],
-  overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
-  printWidth: 80,
+  plugins: ['prettier-plugin-css-order'],
+  printWidth: 100,
   tabWidth: 2,
   useTabs: false,
   semi: true,
@@ -11,6 +10,5 @@ export default {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'always',
-  svelteAllowShorthand: true,
-  svelteIndentScriptAndStyle: false
+  vueIndentScriptAndStyle: false
 };
