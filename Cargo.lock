@@ -3970,9 +3970,9 @@ dependencies = [
 
 [[package]]
 name = "tauri-plugin-manatsu"
-version = "0.4.6"
+version = "0.4.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ba72dfb5cd1ba65ea119479379946d048dd6bfc2d78d6a4e1040122b3f06264f"
+checksum = "4148f0ab8d74d675840e8f3c87bc0924f3254f0f74e6fa561ceaad5e55e140b3"
 dependencies = [
  "manatsu",
  "serde",

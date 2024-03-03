@@ -19,17 +19,17 @@
     "vite:build": "vite build"
   },
   "dependencies": {
-    "@manatsu/tauri-plugin": "^0.4.6",
+    "@manatsu/tauri-plugin": "^0.4.7",
     "@tauri-apps/api": "^1.5.3",
     "@vueuse/core": "^10.9.0",
-    "manatsu": "^0.4.6",
+    "manatsu": "^0.4.7",
     "pinia": "^2.1.7",
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@manatsu/sass": "^0.4.6",
+    "@manatsu/sass": "^0.4.7",
     "@tb-dev/eslint-config": "^2.1.2",
-    "@tb-dev/utility-types": "^1.1.7",
+    "@tb-dev/utility-types": "^1.2.0",
     "@types/node": "^20.11.24",
     "@vitejs/plugin-vue": "^5.0.4",
     "eslint": "^8.57.0",
