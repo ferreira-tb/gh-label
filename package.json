@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@manatsu/style": "^0.5.1",
-    "@tb-dev/auto-import-config": "^1.0.11",
+    "@tb-dev/auto-import-config": "^1.0.12",
     "@tb-dev/eslint-config": "^3.0.1",
     "@tb-dev/utility-types": "^1.2.0",
     "@tb-dev/vue-import-config": "^1.0.2",
@@ -45,6 +45,7 @@
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.1.5",
-    "vite-plugin-vue-devtools": "^7.0.16"
+    "vite-plugin-vue-devtools": "^7.0.16",
+    "vue-router": "^4.3.0"
   }
 }

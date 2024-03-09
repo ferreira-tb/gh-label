@@ -17,6 +17,8 @@ app.use(pinia);
 app.use(manatsu);
 
 app.config.errorHandler = (err) => {
+  console.error(err);
+
   if (err instanceof Error) {
     app.runWithContext(() => {
       const store = useStore();

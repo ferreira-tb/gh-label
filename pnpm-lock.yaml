@@ -29,8 +29,8 @@ devDependencies:
     specifier: ^0.5.1
     version: 0.5.1(sass@1.71.1)
   '@tb-dev/auto-import-config':
-    specifier: ^1.0.11
-    version: 1.0.11(@manatsu/style@0.5.1)(@tb-dev/utility-types@1.2.0)(@vueuse/core@10.9.0)(manatsu@0.5.1)(pinia@2.1.7)(unplugin-auto-import@0.17.5)(vue-router@4.3.0)(vue@3.4.21)
+    specifier: ^1.0.12
+    version: 1.0.12(@manatsu/style@0.5.1)(@tb-dev/utility-types@1.2.0)(@vueuse/core@10.9.0)(manatsu@0.5.1)(pinia@2.1.7)(unplugin-auto-import@0.17.5)(vue-router@4.3.0)(vue@3.4.21)
   '@tb-dev/eslint-config':
     specifier: ^3.0.1
     version: 3.0.1(eslint@8.57.0)(typescript@5.4.2)
@@ -82,6 +82,9 @@ devDependencies:
   vite-plugin-vue-devtools:
     specifier: ^7.0.16
     version: 7.0.16(vite@5.1.5)(vue@3.4.21)
+  vue-router:
+    specifier: ^4.3.0
+    version: 4.3.0(vue@3.4.21)
 
 packages:
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -1238,10 +1241,10 @@ packages:
       }
     engines: { node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1' }
 
-  /@tb-dev/auto-import-config@1.0.11(@manatsu/style@0.5.1)(@tb-dev/utility-types@1.2.0)(@vueuse/core@10.9.0)(manatsu@0.5.1)(pinia@2.1.7)(unplugin-auto-import@0.17.5)(vue-router@4.3.0)(vue@3.4.21):
+  /@tb-dev/auto-import-config@1.0.12(@manatsu/style@0.5.1)(@tb-dev/utility-types@1.2.0)(@vueuse/core@10.9.0)(manatsu@0.5.1)(pinia@2.1.7)(unplugin-auto-import@0.17.5)(vue-router@4.3.0)(vue@3.4.21):
     resolution:
       {
-        integrity: sha512-VdpwEomRlbtVT/FQd89O32fYwwvEpjlKx4zEy4eyPSmB4cWqDdH2uz00LRtXauH/ZOFUPQ/KvCGcxMHpzDN5yg==
+        integrity: sha512-fEWTCKiMqbXDWy+NIa+lThy7k1UUtoh3gdxnviP4pMGhMl8EjQJz9ZJBa/wJrklmJWoW1FJCsSvbUwwgLxV0AQ==
       }
     engines: { node: '>=20' }
     peerDependencies:
