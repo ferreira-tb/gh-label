@@ -1,6 +1,6 @@
 {
   "name": "gh-label",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "Simple GUI for editing GitHub labels",
   "type": "module",
   "packageManager": "pnpm@8.15.2",
@@ -19,18 +19,20 @@
     "vite:build": "vite build"
   },
   "dependencies": {
-    "@manatsu/tauri-plugin": "^0.4.13",
+    "@manatsu/tauri-plugin": "^0.5.1",
     "@tauri-apps/api": "^1.5.3",
     "@vueuse/core": "^10.9.0",
-    "manatsu": "^0.4.13",
+    "manatsu": "^0.5.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@manatsu/sass": "^0.4.13",
-    "@tb-dev/eslint-config": "^2.1.2",
+    "@manatsu/style": "^0.5.1",
+    "@tb-dev/auto-import-config": "^1.0.11",
+    "@tb-dev/eslint-config": "^3.0.1",
     "@tb-dev/utility-types": "^1.2.0",
-    "@types/node": "^20.11.24",
+    "@tb-dev/vue-import-config": "^1.0.2",
+    "@types/node": "^20.11.25",
     "@vitejs/plugin-vue": "^5.0.4",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
@@ -39,8 +41,10 @@
     "prettier-plugin-css-order": "^2.0.1",
     "sass": "^1.71.1",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.4",
+    "typescript": "^5.4.2",
+    "unplugin-auto-import": "^0.17.5",
+    "unplugin-vue-components": "^0.26.0",
+    "vite": "^5.1.5",
     "vite-plugin-vue-devtools": "^7.0.16"
   }
 }

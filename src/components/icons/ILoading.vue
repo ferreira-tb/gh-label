@@ -11,7 +11,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" :width="width" :height="height" viewBox="0 0 24 24">
+  <svg xmlns="http://www.w3.org/2000/svg" :width :height viewBox="0 0 24 24">
     <g>
       <rect width="2" height="5" x="11" y="1" fill="#c30" opacity=".14" />
       <rect

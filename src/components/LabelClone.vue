@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, ref } from 'vue';
-import { useStore } from '../store';
-import { parseRepositoryName } from '../utils';
+import { parseRepositoryName } from '@/utils';
 
 const emit = defineEmits<{
   // eslint-disable-next-line @typescript-eslint/prefer-function-type
@@ -53,7 +51,7 @@ defineExpose({ show });
   <m-dialog
     v-model:visible="visible"
     header="Target"
-    :header-style="headerStyle"
+    :header-style
     storage-key="label-clone"
     storage-type="local"
     @hide="cleanup"
@@ -62,11 +60,11 @@ defineExpose({ show });
       <div class="input-group">
         <label>
           <span>Owner</span>
-          <m-input-text v-model:value="targetOwner" />
+          <m-input-text v-model="targetOwner" />
         </label>
         <label>
           <span>Repository</span>
-          <m-input-text v-model:value="targetRepository" />
+          <m-input-text v-model="targetRepository" />
         </label>
       </div>
       <div>
@@ -82,7 +80,7 @@ defineExpose({ show });
 </template>
 
 <style scoped lang="scss">
-@use '@manatsu/sass/flex';
+@use '@manatsu/style/mixins/flex';
 
 .clone {
   @include flex.center;

@@ -1,6 +1,6 @@
 [package]
 name = "gh-label"
-version = "0.3.0"
+version = "0.4.1"
 publish = false
 
 [package.description]
@@ -34,7 +34,7 @@ anyhow = "1.0.80"
 
 [dependencies.tauri]
 version = "1.6.1"
-features = ["dialog-confirm"]
+features = ["devtools", "dialog-confirm"]
 
 [dependencies.serde]
 version = "1.0.197"
@@ -42,11 +42,7 @@ features = ["derive"]
 
 [dependencies.tokio]
 version = "1.36.0"
-features = [
-    "macros",
-    "process",
-    "rt-multi-thread",
-]
+features = ["macros", "process", "rt-multi-thread"]
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

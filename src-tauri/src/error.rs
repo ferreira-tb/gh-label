@@ -11,6 +11,8 @@ pub enum Error {
   Utf8(#[from] std::string::FromUtf8Error),
   #[error(transparent)]
   Json(#[from] serde_json::Error),
+  #[error(transparent)]
+  Unknown(#[from] anyhow::Error),
 }
 
 impl Serialize for Error {

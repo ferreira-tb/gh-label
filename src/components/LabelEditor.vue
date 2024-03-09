@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { invoke } from '@tauri-apps/api';
+import { createEmptyLabel } from '@/utils';
 import { Command } from '@manatsu/tauri-plugin';
-import { type CSSProperties, computed, nextTick, ref, watch } from 'vue';
-import { useStore } from '../store';
-import Sync from './icons/Sync.vue';
-import LabelChip from './LabelChip.vue';
-import { createEmptyLabel } from '../utils';
 
 const emit = defineEmits<{
   (e: 'create', label: GitHubLabel): void;
@@ -73,7 +69,7 @@ async function cleanup() {
 }
 
 async function randomColor() {
-  const color = await invoke<string>(Command.RandomHexColor);
+  const color = await invoke<string>(Command.RandomStringHexColor);
   colorPickerValue.value = color;
 }
 
@@ -85,30 +81,29 @@ defineExpose({ show });
     v-model:visible="visible"
     modal
     click-outside
-    esc
     header="Editor"
-    :header-style="headerStyle"
+    :header-style
     storage-key="label-editor"
     storage-type="local"
     @hide="cleanup"
   >
     <div v-if="label" class="editor">
-      <LabelChip v-if="label.name.length > 0" :label="label" />
+      <label-chip v-if="label.name.length > 0" :label />
 
       <div class="input-group">
         <label>
           <span>Name</span>
-          <m-input-text v-model:value="label.name" />
+          <m-input-text v-model="label.name" />
         </label>
         <label>
           <span>Description</span>
-          <m-input-text v-model:value="label.description" />
+          <m-input-text v-model="label.description" />
         </label>
       </div>
 
       <div>
         <input v-model="colorPickerValue" type="color" />
-        <Sync @click="randomColor" />
+        <i-sync @click="randomColor" />
       </div>
 
       <div>
@@ -124,7 +119,7 @@ defineExpose({ show });
 </template>
 
 <style scoped lang="scss">
-@use '@manatsu/sass/flex';
+@use '@manatsu/style/mixins/flex';
 
 .editor {
   @include flex.center;
@@ -158,4 +153,3 @@ div:has(button) {
   width: 100%;
 }
 </style>
-./icons/ISync.vue

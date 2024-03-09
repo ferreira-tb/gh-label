@@ -2,12 +2,14 @@
 import { Command } from '@/utils';
 import { invoke } from '@tauri-apps/api';
 import { confirm } from '@tauri-apps/api/dialog';
+import LabelClone from '@/components/LabelClone.vue';
+import LabelEditor from '@/components/LabelEditor.vue';
 
 const store = useStore();
 const { state: authenticated, isLoading: isCheckingAuth } = useAsyncState(isAuthenticated, false);
 
-const editorRef = shallowRef<InstanceType<typeof LabelEditor> | null>(null);
-const cloneRef = shallowRef<InstanceType<typeof LabelClone> | null>(null);
+const editorRef = shallowRef<ComponentInstance<typeof LabelEditor> | null>(null);
+const cloneRef = shallowRef<ComponentInstance<typeof LabelClone> | null>(null);
 
 async function isAuthenticated() {
   try {
@@ -156,12 +158,13 @@ onMounted(async () => {
             <div>
               <label>
                 <span>Owner</span>
-                <m-input-text v-model:value="store.owner" />
+                <m-input-text v-model="store.owner" />
               </label>
               <label>
                 <span>Repository</span>
-                <m-input-text v-model:value="store.repository" />
+                <m-input-text v-model="store.repository" />
               </label>
+
               <div class="actions">
                 <m-button
                   variant="outlined"
@@ -201,7 +204,7 @@ onMounted(async () => {
     </template>
   </m-scaffold>
 
-  <loading v-else-if="isCheckingAuth" class="loading" />
+  <i-loading v-else-if="isCheckingAuth" class="loading" />
 
   <div v-else>
     <div class="unauthenticated">You are not authenticated. Please login first.</div>

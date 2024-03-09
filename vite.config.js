@@ -11,8 +11,7 @@ const autoImportOptions = autoImportConfig({
   manatsu: true,
   imports: [
     {
-      '@/stores': ['useStore'],
-      '@/composables': ['useInvoke']
+      '@/store': ['useStore']
     }
   ]
 });
