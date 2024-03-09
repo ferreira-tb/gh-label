@@ -20,6 +20,9 @@ It's also possible to run without building it:
 pnpm run dev
 ```
 
+> [!TIP]
+> If you are using Windows, you can just download the [latest release](https://github.com/ferreira-tb/gh-label/releases/download/v0.4.1/gh-label_0.4.1_x64_en-US.msi). Users of other operating systems will need to build the app themselves.
+
 ## Prerequisites
 
 - [GitHub CLI](https://cli.github.com/)
