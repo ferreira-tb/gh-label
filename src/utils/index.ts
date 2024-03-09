@@ -2,13 +2,22 @@ import { invoke } from '@tauri-apps/api';
 import type { Nullish } from '@tb-dev/utility-types';
 import { Command as ManatsuCommand } from '@manatsu/tauri-plugin';
 
-export const enum Key {
+export enum Key {
   Owner = 'gh-label:owner',
   Repository = 'gh-label:repository'
 }
 
+export enum Command {
+  Clone = 'clone_labels',
+  Create = 'create_label',
+  Delete = 'delete_label',
+  Edit = 'edit_label',
+  IsLoggedIn = 'is_logged_in',
+  List = 'list_labels'
+}
+
 export async function createEmptyLabel(): Promise<GitHubLabel> {
-  let color = await invoke<string>(ManatsuCommand.RandomHexColor);
+  let color = await invoke<string>(ManatsuCommand.RandomStringHexColor);
   color = color.replace('#', '');
 
   return {

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import { invoke } from '@tauri-apps/api';
-import { computedAsync } from '@vueuse/core';
 import { Command, type HexColor, type HslColor, type RgbColor } from '@manatsu/tauri-plugin';
 
 const props = defineProps<{
@@ -51,7 +49,7 @@ const labelL = computed(() => Math.round((hsl.value?.l ?? 0) * 100));
 </template>
 
 <style scoped lang="scss">
-@use '@manatsu/sass/flex';
+@use '@manatsu/style/mixins/flex';
 
 .label {
   @include flex.center($inline: true);

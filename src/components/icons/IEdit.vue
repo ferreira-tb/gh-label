@@ -1,8 +1,20 @@
+<script setup lang="ts">
+interface Props {
+  width?: string;
+  height?: string;
+}
+
+withDefaults(defineProps<Props>(), {
+  width: '1em',
+  height: '1em'
+});
+</script>
+
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
+    :width
+    :height
     viewBox="0 0 512 512"
     tabindex="0"
     role="button"

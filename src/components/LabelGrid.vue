@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useStore } from '@/store';
-import { storeToRefs } from 'pinia';
+import { toRaw } from 'vue';
 
 defineEmits<{
   // eslint-disable-next-line @typescript-eslint/prefer-function-type
@@ -25,7 +24,7 @@ const { labels } = storeToRefs(store);
 </template>
 
 <style scoped lang="scss">
-@use '@manatsu/sass/flex';
+@use '@manatsu/style/mixins/flex';
 
 .label-grid {
   display: grid;
@@ -41,4 +40,3 @@ const { labels } = storeToRefs(store);
   gap: 0.5rem;
 }
 </style>
-./icons/IDelete.vue./icons/IEdit.vue

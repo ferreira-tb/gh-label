@@ -5,7 +5,7 @@ updates:
     groups:
       non-major:
         patterns:
-          - "*"
+          - '*'
         update-types:
           - minor
           - patch
@@ -20,7 +20,7 @@ updates:
     groups:
       non-major:
         patterns:
-          - "*"
+          - '*'
         update-types:
           - minor
           - patch

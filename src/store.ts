@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
-import { StorageKey, parseRepositoryName } from '@/utils';
+import { Key, parseRepositoryName } from '@/utils';
 
 export const useStore = defineStore('gh-label-store', () => {
-  const owner = useLocalStorage(StorageKey.Owner, 'ferreira-tb');
-  const repository = useLocalStorage(StorageKey.Repository, 'ferreira-tb');
+  const owner = useLocalStorage(Key.Owner, 'ferreira-tb');
+  const repository = useLocalStorage(Key.Repository, 'ferreira-tb');
   const currentRepository = computed(() => parseRepositoryName(owner.value, repository.value));
 
   const labels = ref<GitHubLabel[]>([]);

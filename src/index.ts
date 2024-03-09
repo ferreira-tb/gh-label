@@ -1,6 +1,6 @@
-import '@/assets/style.css';
-import 'manatsu/components/style';
 import '@manatsu/style/themes/mana';
+import 'manatsu/components/style';
+import '@/assets/style.css';
 import App from '@/App.vue';
 import { createApp } from 'vue';
 import { useStore } from '@/store';
@@ -17,6 +17,8 @@ app.use(pinia);
 app.use(manatsu);
 
 app.config.errorHandler = (err) => {
+  console.error(err);
+
   if (err instanceof Error) {
     app.runWithContext(() => {
       const store = useStore();
