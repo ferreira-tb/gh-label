@@ -1,15 +1,7 @@
 <script setup lang="ts">
+import { Command } from '@/utils';
 import { invoke } from '@tauri-apps/api';
-import { useAsyncState } from '@vueuse/core';
 import { confirm } from '@tauri-apps/api/dialog';
-import type { Nullish } from '@tb-dev/utility-types';
-import { nextTick, onMounted, shallowRef } from 'vue';
-import { Command } from './utils';
-import { useStore } from './store';
-import LabelGrid from './components/LabelGrid.vue';
-import Loading from './components/icons/Loading.vue';
-import LabelClone from './components/LabelClone.vue';
-import LabelEditor from './components/LabelEditor.vue';
 
 const store = useStore();
 const { state: authenticated, isLoading: isCheckingAuth } = useAsyncState(isAuthenticated, false);
@@ -202,14 +194,14 @@ onMounted(async () => {
       </m-toolbar>
     </template>
     <template #default>
-      <LabelGrid @delete="remove" @edit="(label) => editorRef?.show('edit', label)" />
+      <label-grid @delete="remove" @edit="(label) => editorRef?.show('edit', label)" />
 
-      <LabelEditor ref="editorRef" @edit="edit" @create="create" />
-      <LabelClone ref="cloneRef" @clone="clone" />
+      <label-editor ref="editorRef" @edit="edit" @create="create" />
+      <label-clone ref="cloneRef" @clone="clone" />
     </template>
   </m-scaffold>
 
-  <Loading v-else-if="isCheckingAuth" class="loading" />
+  <loading v-else-if="isCheckingAuth" class="loading" />
 
   <div v-else>
     <div class="unauthenticated">You are not authenticated. Please login first.</div>
@@ -217,8 +209,8 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
-@use '@manatsu/sass/flex';
-@use '@manatsu/sass/util';
+@use '@manatsu/style/mixins/flex';
+@use '@manatsu/style/mixins/util';
 
 .toolbar {
   @include flex.x-center;

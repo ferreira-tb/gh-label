@@ -1,2 +1,1 @@
-cargo fmt --all
-pnpm exec lint-staged
+

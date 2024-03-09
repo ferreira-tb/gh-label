@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { toRaw } from 'vue';
+import { useStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import { useStore } from '../store';
-import Edit from './icons/Edit.vue';
-import Delete from './icons/Delete.vue';
-import LabelChip from './LabelChip.vue';
 
 defineEmits<{
   // eslint-disable-next-line @typescript-eslint/prefer-function-type
@@ -18,11 +14,11 @@ const { labels } = storeToRefs(store);
 <template>
   <div class="label-grid">
     <template v-for="label of labels" :key="label.name">
-      <div><LabelChip :label="label" /></div>
+      <div><label-chip :label /></div>
       <div>{{ label.description }}</div>
       <div class="action">
-        <Edit @click="$emit('edit', toRaw(label))" />
-        <Delete @click="$emit('delete', toRaw(label))" />
+        <i-edit @click="$emit('edit', toRaw(label))" />
+        <i-delete @click="$emit('delete', toRaw(label))" />
       </div>
     </template>
   </div>
@@ -45,3 +41,4 @@ const { labels } = storeToRefs(store);
   gap: 0.5rem;
 }
 </style>
+./icons/IDelete.vue./icons/IEdit.vue

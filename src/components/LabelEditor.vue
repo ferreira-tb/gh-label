@@ -158,3 +158,4 @@ div:has(button) {
   width: 100%;
 }
 </style>
+./icons/ISync.vue

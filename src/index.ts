@@ -1,10 +1,11 @@
-import 'manatsu/style';
-import './assets/style.css';
+import '@/assets/style.css';
+import 'manatsu/components/style';
+import '@manatsu/style/themes/mana';
+import App from '@/App.vue';
 import { createApp } from 'vue';
+import { useStore } from '@/store';
 import { createPinia } from 'pinia';
 import { createManatsu, registerComponents } from 'manatsu';
-import App from './App.vue';
-import { useStore } from './store';
 
 const app = createApp(App);
 const pinia = createPinia();
