@@ -1,6 +1,6 @@
 {
   "name": "gh-label",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Simple GUI for editing GitHub labels",
   "type": "module",
   "packageManager": "pnpm@8.15.2",

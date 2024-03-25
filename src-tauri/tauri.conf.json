@@ -17,7 +17,7 @@
     ]
   },
   "productName": "gh-label",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "identifier": "tbdev.ghlabel",
   "plugins": {},
   "app": {

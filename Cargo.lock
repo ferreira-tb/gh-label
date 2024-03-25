@@ -2788,9 +2788,9 @@ dependencies = [
 
 [[package]]
 name = "manatsu"
-version = "0.6.5"
+version = "0.6.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b926a035ae089f0c51d3758e7fc3f6ef5c4adc2c3d7cdb22581407aeaf4d585"
+checksum = "7b46c78ecc34c2f81888390784a6c7b9d7bc3a1a9c3ac9b517072a326164a04d"
 dependencies = [
  "anyhow",
  "bytes",
