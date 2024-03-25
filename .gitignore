@@ -28,6 +28,9 @@ Cargo.lock
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
 
+# Tauri
+**/gen
+
 # Others
 config.json
 coverage/
@@ -35,7 +38,4 @@ coverage/
 .stylelintcache
 .DS_Store
 .env
-.env.*
-!.env.example
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+**/*vite*timestamp*

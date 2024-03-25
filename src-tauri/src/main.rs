@@ -111,6 +111,7 @@ async fn clone_labels(from: String, to: String) -> Result<()> {
 #[tokio::main]
 async fn main() {
   tauri::Builder::default()
+    .plugin(tauri_plugin_dialog::init())
     .plugin(tauri_plugin_window_state::Builder::default().build())
     .plugin(tauri_plugin_manatsu::init())
     .invoke_handler(tauri::generate_handler![

@@ -1,6 +1,6 @@
 [package]
 name = "gh-label"
-version = "0.4.1"
+version = "0.5.0"
 publish = false
 
 [package.description]
@@ -22,19 +22,20 @@ workspace = true
 workspace = true
 
 [build-dependencies.tauri-build]
-version = "1.5.1"
+version = "2.0.0-beta.10"
 features = []
 
 [dependencies]
 serde_json = "1.0.114"
 thiserror = "1.0.58"
-tauri-plugin-manatsu = "0.5.0"
-tauri-plugin-window-state = "0.1.1"
+tauri-plugin-manatsu = "0.6.5"
+tauri-plugin-window-state = "2.0.0-beta.3"
 anyhow = "1.0.81"
+tauri-plugin-dialog = "2.0.0-beta.3"
 
 [dependencies.tauri]
-version = "1.6.1"
-features = ["devtools", "dialog-confirm"]
+version = "2.0.0-beta.13"
+features = []
 
 [dependencies.serde]
 version = "1.0.197"
@@ -42,7 +43,11 @@ features = ["derive"]
 
 [dependencies.tokio]
 version = "1.36.0"
-features = ["macros", "process", "rt-multi-thread"]
+features = [
+    "macros",
+    "process",
+    "rt-multi-thread",
+]
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

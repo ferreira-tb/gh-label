@@ -2,7 +2,6 @@
 import { parseRepositoryName } from '@/utils';
 
 const emit = defineEmits<{
-  // eslint-disable-next-line @typescript-eslint/prefer-function-type
   (e: 'clone', target: string): void;
 }>();
 

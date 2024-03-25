@@ -6,6 +6,9 @@ export default config({
   overrides: {
     perfectionist: {
       'perfectionist/sort-interfaces': 'off'
+    },
+    typescript: {
+      '@typescript-eslint/prefer-function-type': 'off'
     }
   }
 });

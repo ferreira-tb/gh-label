@@ -1,4 +1,4 @@
-import { invoke } from '@tauri-apps/api';
+import { invoke } from '@tauri-apps/api/core';
 import type { Nullish } from '@tb-dev/utility-types';
 import { Command as ManatsuCommand } from '@manatsu/tauri-plugin';
 

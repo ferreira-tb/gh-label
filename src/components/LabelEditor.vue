@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { invoke } from '@tauri-apps/api';
 import { createEmptyLabel } from '@/utils';
+import { invoke } from '@tauri-apps/api/core';
 import { Command } from '@manatsu/tauri-plugin';
 
 const emit = defineEmits<{

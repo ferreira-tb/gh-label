@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Command } from '@/utils';
-import { invoke } from '@tauri-apps/api';
-import { confirm } from '@tauri-apps/api/dialog';
+import { invoke } from '@tauri-apps/api/core';
+import { confirm } from '@tauri-apps/plugin-dialog';
 import LabelClone from '@/components/LabelClone.vue';
 import LabelEditor from '@/components/LabelEditor.vue';
 
@@ -76,7 +76,7 @@ async function remove(label: GitHubLabel) {
   try {
     const ok = await confirm('Are you sure you want to delete this label?', {
       title: 'Delete label',
-      type: 'warning'
+      kind: 'warning'
     });
 
     if (ok) {
@@ -104,7 +104,7 @@ async function clone(to: string) {
       'Labels may be overwritten if they have the same name. Are you sure you want to continue?',
       {
         title: 'Clone labels',
-        type: 'warning'
+        kind: 'warning'
       }
     );
 
@@ -116,7 +116,6 @@ async function clone(to: string) {
   } catch (err) {
     handleError(err);
   } finally {
-    // eslint-disable-next-line require-atomic-updates
     store.loading = false;
   }
 }
@@ -141,6 +140,10 @@ function isFromSameRepository(label: GitHubLabel) {
   if (!store.currentRepository) return false;
   return label.repository === store.currentRepository;
 }
+
+useEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
 
 onMounted(async () => {
   if (store.currentRepository) {

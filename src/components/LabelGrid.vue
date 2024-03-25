@@ -2,7 +2,6 @@
 import { toRaw } from 'vue';
 
 defineEmits<{
-  // eslint-disable-next-line @typescript-eslint/prefer-function-type
   (e: 'delete' | 'edit', label: GitHubLabel): void;
 }>();
 

@@ -7,7 +7,7 @@
 Clone this repository and run the following commands to build the app:
 
 ```bash
-cargo install tauri-cli
+cargo install tauri-cli --version "^2.0.0-beta"
 pnpm install
 pnpm run build
 ```

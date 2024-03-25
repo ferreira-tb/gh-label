@@ -1,4 +1,5 @@
 dist
 target
 build
-.svelte-kit
+types/auto-imports.d.ts
+types/components.d.ts
