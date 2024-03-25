@@ -20,14 +20,12 @@ It's also possible to run without building it:
 pnpm run dev
 ```
 
-> [!TIP]
-> If using Windows, you can just download the [latest release](https://github.com/ferreira-tb/gh-label/releases/download/v0.4.1/gh-label_0.4.1_x64_en-US.msi). Users of other operating systems will need to build the app themselves.
-
 ## Prerequisites
 
 - [GitHub CLI](https://cli.github.com/)
 - [Rust](https://www.rust-lang.org/tools/install)
-- [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites)
+- [Tauri](https://beta.tauri.app/guides/prerequisites/)
+- [pnpm](https://pnpm.io/installation)
 
 You must make sure that you have the GitHub CLI installed and authenticated. You can login with the following command:
 
@@ -37,7 +35,7 @@ gh auth login
 
 For more information, see the [GitHub CLI documentation](https://cli.github.com/manual/gh_auth_login).
 
-Rust and [Tauri](https://tauri.app/v1/guides/) are only required **before** building the app with `pnpm run build`. After that, you can run it without them.
+Rust and [Tauri](https://beta.tauri.app/guides/) are only required **before** building the app with `pnpm run build`. After that, you can run it without them.
 
 ## License
 
