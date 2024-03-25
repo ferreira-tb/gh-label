@@ -5,9 +5,9 @@
   "permissions": [
     "dialog:allow-confirm",
     "manatsu:allow-hex-to-rgb",
-    "manatsu:allow-log-error",
     "manatsu:allow-random-string-hex-color",
     "manatsu:allow-rgb-to-hsl",
+    "manatsu:allow-save-error-log",
     "manatsu:allow-string-to-hex",
     "window-state:allow-restore-window-state",
     "window-state:allow-save-window-state"
