@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
-import { Key, parseRepositoryName } from '@/utils';
+import { Key, parseRepositoryName } from '@/lib/utils';
 
 export const useStore = defineStore('gh-label-store', () => {
   const owner = useLocalStorage(Key.Owner, 'ferreira-tb');

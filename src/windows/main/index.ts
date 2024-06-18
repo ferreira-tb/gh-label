@@ -22,4 +22,6 @@ const manatsu = createManatsu({
 app.use(pinia);
 app.use(manatsu);
 
+useColorMode().value = 'dark';
+
 app.mount('#app');

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { invoke } from '@tauri-apps/api/core';
-import { Command, type HexColor, type HslColor, type RgbColor } from '@manatsu/tauri-plugin';
+import { Command } from '@manatsu/tauri-plugin';
 
 const props = defineProps<{
   label: GitHubLabel;

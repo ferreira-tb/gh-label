@@ -1,12 +1,12 @@
 {
   "productName": "gh-label",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "identifier": "tbdev.ghlabel",
   "build": {
     "beforeDevCommand": "pnpm run vite:dev",
     "beforeBuildCommand": "pnpm run vite:build",
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:1421"
+    "devUrl": "http://localhost:1420"
   },
   "bundle": {
     "active": true,

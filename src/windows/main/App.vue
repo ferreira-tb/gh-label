@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useStore } from '@/stores';
-import { Command } from '@/lib/utils';
 import { invoke } from '@tauri-apps/api/core';
+import { Button } from '@/components/ui/button';
+import { Command, showWindow } from '@/lib/utils';
+import LabelGrid from '@/components/LabelGrid.vue';
 import { confirm } from '@tauri-apps/plugin-dialog';
 import LabelClone from '@/components/LabelClone.vue';
 import LabelEditor from '@/components/LabelEditor.vue';
@@ -147,8 +149,16 @@ useEventListener('contextmenu', (e) => {
 });
 
 onMounted(async () => {
-  if (store.currentRepository) {
-    await list(store.currentRepository);
+  try {
+    if (store.currentRepository) {
+      await list(store.currentRepository);
+    }
+
+    await flushPromises();
+  } catch (err) {
+    handleError(err);
+  } finally {
+    await showWindow();
   }
 });
 </script>
@@ -156,41 +166,41 @@ onMounted(async () => {
 <template>
   <MScaffold v-if="authenticated && !isCheckingAuth">
     <template #top>
-      <m-toolbar :border="false">
+      <MToolbar :border="false">
         <template #center>
           <div class="toolbar">
             <div>
               <label>
                 <span>Owner</span>
-                <m-input-text v-model="store.owner" />
+                <MInputText v-model="store.owner" />
               </label>
               <label>
                 <span>Repository</span>
-                <m-input-text v-model="store.repository" />
+                <MInputText v-model="store.repository" />
               </label>
 
               <div class="actions">
-                <m-button
-                  variant="outlined"
+                <Button
+                  variant="outline"
                   :disabled="!store.ready"
                   @click="list(store.currentRepository)"
                 >
                   <span>Fetch</span>
-                </m-button>
-                <m-button
-                  variant="outlined"
+                </Button>
+                <Button
+                  variant="outline"
                   :disabled="!store.ready"
                   @click="editorRef?.show('create')"
                 >
                   <span>Create</span>
-                </m-button>
-                <m-button
-                  variant="outlined"
+                </Button>
+                <Button
+                  variant="outline"
                   :disabled="!store.ready || store.labels.length === 0"
                   @click="cloneRef?.show()"
                 >
                   <span>Clone</span>
-                </m-button>
+                </Button>
               </div>
             </div>
             <div v-if="store.error" class="error">
@@ -198,13 +208,13 @@ onMounted(async () => {
             </div>
           </div>
         </template>
-      </m-toolbar>
+      </MToolbar>
     </template>
     <template #default>
-      <label-grid @delete="remove" @edit="(label) => editorRef?.show('edit', label)" />
+      <LabelGrid @delete="remove" @edit="(label) => editorRef?.show('edit', label)" />
 
-      <label-editor ref="editorRef" @edit="edit" @create="create" />
-      <label-clone ref="cloneRef" @clone="clone" />
+      <LabelEditor ref="editorRef" @edit="edit" @create="create" />
+      <LabelClone ref="cloneRef" @clone="clone" />
     </template>
   </MScaffold>
 

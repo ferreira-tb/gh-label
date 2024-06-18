@@ -7,11 +7,11 @@ mod error;
 use command::Command;
 use error::Error;
 use serde::{Deserialize, Serialize};
+use tauri::WebviewWindow;
 
 type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug, Deserialize, Serialize)]
-#[serde(rename_all(serialize = "snake_case", deserialize = "camelCase"))]
 struct GitHubLabel {
   color: String,
   description: String,
@@ -111,6 +111,11 @@ async fn clone_labels(from: String, to: String) -> Result<()> {
   Ok(())
 }
 
+#[tauri::command]
+async fn show_window(window: WebviewWindow) -> Result<()> {
+  window.show().map_err(Into::into)
+}
+
 fn main() {
   tauri::Builder::default()
     .plugin(tauri_plugin_dialog::init())
@@ -121,7 +126,8 @@ fn main() {
       create_label,
       edit_label,
       delete_label,
-      clone_labels
+      clone_labels,
+      show_window
     ])
     .run(tauri::generate_context!())
     .expect("error while running gh-label");

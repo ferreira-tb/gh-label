@@ -19,7 +19,12 @@ export enum Command {
   Delete = 'delete_label',
   Edit = 'edit_label',
   IsLoggedIn = 'is_logged_in',
-  List = 'list_labels'
+  List = 'list_labels',
+  ShowWindow = 'show_window'
+}
+
+export async function showWindow() {
+  await invoke(Command.ShowWindow);
 }
 
 export async function createEmptyLabel(): Promise<GitHubLabel> {

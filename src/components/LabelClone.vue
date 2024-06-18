@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStore } from '@/stores';
+import { Button } from './ui/button';
 import { parseRepositoryName } from '@/lib/utils';
 
 const emit = defineEmits<{
@@ -56,8 +57,8 @@ defineExpose({ show });
     storage-type="local"
     @hide="cleanup"
   >
-    <div class="clone">
-      <div class="input-group">
+    <div class="flex flex-col items-center justify-center gap-4 p-2 pt-0">
+      <div class="flex w-full flex-col gap-4">
         <label>
           <span>Owner</span>
           <MInputText v-model="targetOwner" />
@@ -67,39 +68,14 @@ defineExpose({ show });
           <MInputText v-model="targetRepository" />
         </label>
       </div>
-      <div>
-        <MButton @click="visible = false">
+      <div class="flex w-full items-center justify-center gap-2">
+        <Button @click="visible = false">
           <span>Cancel</span>
-        </MButton>
-        <MButton :disabled="!ok" @click="clone">
+        </Button>
+        <Button :disabled="!ok" @click="clone">
           <span>Clone</span>
-        </MButton>
+        </Button>
       </div>
     </div>
   </MDialog>
 </template>
-
-<style scoped lang="scss">
-@use '@manatsu/style/mixins/flex';
-
-.clone {
-  @include flex.center;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 0.5rem;
-  padding-top: 0;
-}
-
-.input-group {
-  @include flex.center;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-div:has(button) {
-  @include flex.center;
-  gap: 0.5rem;
-  width: 100%;
-}
-</style>

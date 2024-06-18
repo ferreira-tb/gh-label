@@ -8,9 +8,13 @@ pub enum Error {
   #[error(transparent)]
   Io(#[from] std::io::Error),
   #[error(transparent)]
+  Manatsu(#[from] tauri_plugin_manatsu::Error),
+  #[error(transparent)]
   Utf8(#[from] std::string::FromUtf8Error),
   #[error(transparent)]
   Json(#[from] serde_json::Error),
+  #[error(transparent)]
+  Tauri(#[from] tauri::Error),
   #[error(transparent)]
   Unknown(#[from] anyhow::Error),
 }

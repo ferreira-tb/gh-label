@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStore } from '@/stores';
+import { Button } from './ui/button';
 import ISync from './icons/ISync.vue';
 import { invoke } from '@tauri-apps/api/core';
 import { createEmptyLabel } from '@/lib/utils';
@@ -89,10 +90,10 @@ defineExpose({ show });
     storage-type="local"
     @hide="cleanup"
   >
-    <div v-if="label" class="editor">
+    <div v-if="label" class="flex flex-col items-center justify-center gap-4 p-2">
       <LabelChip v-if="label.name.length > 0" :label />
 
-      <div class="input-group">
+      <div class="flex w-full flex-col gap-4">
         <label>
           <span>Name</span>
           <MInputText v-model="label.name" />
@@ -103,55 +104,23 @@ defineExpose({ show });
         </label>
       </div>
 
-      <div>
-        <input v-model="colorPickerValue" type="color" />
+      <div class="flex items-center justify-center gap-2">
+        <input
+          v-model="colorPickerValue"
+          type="color"
+          class="cursor-pointer border-none bg-transparent p-0"
+        />
         <ISync @click="randomColor" />
       </div>
 
-      <div>
-        <MButton @click="visible = false">
+      <div class="flex w-full items-center justify-center gap-2">
+        <Button @click="visible = false">
           <span>Cancel</span>
-        </MButton>
-        <MButton :disabled="!ok" @click="save">
+        </Button>
+        <Button :disabled="!ok" @click="save">
           <span>Save</span>
-        </MButton>
+        </Button>
       </div>
     </div>
   </MDialog>
 </template>
-
-<style scoped lang="scss">
-@use '@manatsu/style/mixins/flex';
-
-.editor {
-  @include flex.center;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 0.5rem;
-}
-
-.input-group {
-  @include flex.center;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-div:has(> input[type='color']) {
-  @include flex.center;
-  gap: 0.5rem;
-}
-
-input[type='color'] {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
-
-div:has(button) {
-  @include flex.center;
-  gap: 0.5rem;
-  width: 100%;
-}
-</style>
