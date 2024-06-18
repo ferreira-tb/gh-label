@@ -1,6 +1,12 @@
+import { twMerge } from 'tailwind-merge';
+import { type ClassValue, clsx } from 'clsx';
 import { invoke } from '@tauri-apps/api/core';
 import type { Nullish } from '@tb-dev/utility-types';
 import { Command as ManatsuCommand } from '@manatsu/tauri-plugin';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export enum Key {
   Owner = 'gh-label:owner',

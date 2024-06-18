@@ -13,14 +13,10 @@ impl<'a> Command<'a> {
     cmd.arg(command);
 
     // https://learn.microsoft.com/en-us/windows/win32/procthread/process-creation-flags#CREATE_NO_WINDOW
-    if cfg!(windows) {
-      cmd.creation_flags(0x08000000);
-    }
+    #[cfg(target_os = "windows")]
+    cmd.creation_flags(0x08000000);
 
-    Self {
-      command: cmd,
-      args: Vec::default(),
-    }
+    Self { command: cmd, args: Vec::default() }
   }
 
   pub async fn output(&mut self) -> Result<Output> {

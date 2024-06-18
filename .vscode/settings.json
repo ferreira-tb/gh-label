@@ -1,6 +1,4 @@
 {
-  "prettier.requireConfig": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
@@ -10,9 +8,36 @@
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.exclude": {
-    ".eslintcache": true,
-    ".stylelintcache": true
+  "conventionalCommits.promptScopes": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
   },
-  "rust-analyzer.showUnlinkedFileNotification": false
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.useFlatConfig": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.exclude": {
+    ".eslintcache": true
+  },
+  "logViewer.logLevel": "trace",
+  "logViewer.watch": ["app.log"],
+  "prettier.requireConfig": true,
+  "rust-analyzer.showUnlinkedFileNotification": false,
+  "tailwindCSS.classAttributes": ["class", "header-class"],
+  "vsicons.associations.folders": [
+    {
+      "extensions": ["composables"],
+      "format": "svg",
+      "icon": "theme"
+    },
+    {
+      "extensions": ["store", "stores"],
+      "format": "svg",
+      "icon": "story"
+    }
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

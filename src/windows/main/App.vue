@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Command } from '@/utils';
+import { useStore } from '@/stores';
+import { Command } from '@/lib/utils';
 import { invoke } from '@tauri-apps/api/core';
 import { confirm } from '@tauri-apps/plugin-dialog';
 import LabelClone from '@/components/LabelClone.vue';
@@ -153,7 +154,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <m-scaffold v-if="authenticated && !isCheckingAuth">
+  <MScaffold v-if="authenticated && !isCheckingAuth">
     <template #top>
       <m-toolbar :border="false">
         <template #center>
@@ -205,9 +206,9 @@ onMounted(async () => {
       <label-editor ref="editorRef" @edit="edit" @create="create" />
       <label-clone ref="cloneRef" @clone="clone" />
     </template>
-  </m-scaffold>
+  </MScaffold>
 
-  <i-loading v-else-if="isCheckingAuth" class="loading" />
+  <ILoading v-else-if="isCheckingAuth" class="loading" />
 
   <div v-else>
     <div class="unauthenticated">You are not authenticated. Please login first.</div>

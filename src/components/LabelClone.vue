@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { parseRepositoryName } from '@/utils';
+import { useStore } from '@/stores';
+import { parseRepositoryName } from '@/lib/utils';
 
 const emit = defineEmits<{
   (e: 'clone', target: string): void;
@@ -47,7 +48,7 @@ defineExpose({ show });
 </script>
 
 <template>
-  <m-dialog
+  <MDialog
     v-model:visible="visible"
     header="Target"
     :header-style
@@ -59,23 +60,23 @@ defineExpose({ show });
       <div class="input-group">
         <label>
           <span>Owner</span>
-          <m-input-text v-model="targetOwner" />
+          <MInputText v-model="targetOwner" />
         </label>
         <label>
           <span>Repository</span>
-          <m-input-text v-model="targetRepository" />
+          <MInputText v-model="targetRepository" />
         </label>
       </div>
       <div>
-        <m-button @click="visible = false">
+        <MButton @click="visible = false">
           <span>Cancel</span>
-        </m-button>
-        <m-button :disabled="!ok" @click="clone">
+        </MButton>
+        <MButton :disabled="!ok" @click="clone">
           <span>Clone</span>
-        </m-button>
+        </MButton>
       </div>
     </div>
-  </m-dialog>
+  </MDialog>
 </template>
 
 <style scoped lang="scss">

@@ -43,7 +43,9 @@ const labelL = computed(() => Math.round((hsl.value?.l ?? 0) * 100));
 </script>
 
 <template>
-  <div class="label label-color">
+  <div
+    class="label inline-flex items-center justify-center whitespace-nowrap border border-solid border-transparent"
+  >
     <span>{{ label.name }}</span>
   </div>
 </template>
@@ -52,14 +54,9 @@ const labelL = computed(() => Math.round((hsl.value?.l ?? 0) * 100));
 @use '@manatsu/style/mixins/flex';
 
 .label {
-  @include flex.center($inline: true);
-  border: 1px solid transparent;
   border-radius: 2em;
   padding: 0 10px;
-  white-space: nowrap;
-}
 
-.label-color {
   --lightness-threshold: 0.6;
   --background-alpha: 0.18;
   --border-alpha: 0.3;

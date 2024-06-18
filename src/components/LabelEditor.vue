@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { createEmptyLabel } from '@/utils';
+import { useStore } from '@/stores';
+import ISync from './icons/ISync.vue';
 import { invoke } from '@tauri-apps/api/core';
+import { createEmptyLabel } from '@/lib/utils';
 import { Command } from '@manatsu/tauri-plugin';
 
 const emit = defineEmits<{
@@ -77,7 +79,7 @@ defineExpose({ show });
 </script>
 
 <template>
-  <m-dialog
+  <MDialog
     v-model:visible="visible"
     modal
     click-outside
@@ -88,34 +90,34 @@ defineExpose({ show });
     @hide="cleanup"
   >
     <div v-if="label" class="editor">
-      <label-chip v-if="label.name.length > 0" :label />
+      <LabelChip v-if="label.name.length > 0" :label />
 
       <div class="input-group">
         <label>
           <span>Name</span>
-          <m-input-text v-model="label.name" />
+          <MInputText v-model="label.name" />
         </label>
         <label>
           <span>Description</span>
-          <m-input-text v-model="label.description" />
+          <MInputText v-model="label.description" />
         </label>
       </div>
 
       <div>
         <input v-model="colorPickerValue" type="color" />
-        <i-sync @click="randomColor" />
+        <ISync @click="randomColor" />
       </div>
 
       <div>
-        <m-button @click="visible = false">
+        <MButton @click="visible = false">
           <span>Cancel</span>
-        </m-button>
-        <m-button :disabled="!ok" @click="save">
+        </MButton>
+        <MButton :disabled="!ok" @click="save">
           <span>Save</span>
-        </m-button>
+        </MButton>
       </div>
     </div>
-  </m-dialog>
+  </MDialog>
 </template>
 
 <style scoped lang="scss">

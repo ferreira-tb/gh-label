@@ -1,31 +1,37 @@
-import { URL, fileURLToPath } from 'node:url';
+import tailwind from 'tailwindcss';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import autoprefixer from 'autoprefixer';
 import dev from 'vite-plugin-vue-devtools';
-import autoImport from 'unplugin-auto-import/vite';
-import components from 'unplugin-vue-components/vite';
-import componentsConfig from '@tb-dev/vue-import-config';
-import autoImportConfig from '@tb-dev/auto-import-config';
-
-const autoImportOptions = autoImportConfig({
-  manatsu: true,
-  imports: [
-    {
-      '@/store': ['useStore']
-    }
-  ]
-});
+import { URL, fileURLToPath } from 'node:url';
+import autoImport from '@tb-dev/auto-import-config';
 
 export default defineConfig({
-  plugins: [vue(), dev(), autoImport(autoImportOptions), components(componentsConfig())],
   clearScreen: false,
+  plugins: [
+    vue(),
+    dev(),
+    autoImport({
+      presets: {
+        manatsu: true,
+        tauri: true,
+        vueuseRouter: true
+      }
+    })
+  ],
+  css: {
+    postcss: {
+      plugins: [tailwind(), autoprefixer()]
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url))
     }
   },
   server: {
-    port: 1421,
+    port: 1420,
     strictPort: true,
     watch: {
       ignored: ['**/src-tauri/**']
@@ -33,7 +39,17 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    emptyOutDir: true,
     minify: false,
-    sourcemap: false
+    sourcemap: false,
+    rollupOptions: {
+      input: {
+        main: entry('main')
+      }
+    }
   }
 });
+
+function entry(name) {
+  return resolve(__dirname, `src/windows/${name}/index.html`);
+}

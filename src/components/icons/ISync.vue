@@ -18,6 +18,7 @@ withDefaults(defineProps<Props>(), {
     viewBox="0 0 24 24"
     tabindex="0"
     role="button"
+    class="cursor-pointer"
   >
     <path
       fill="#888888"
@@ -25,9 +26,3 @@ withDefaults(defineProps<Props>(), {
     />
   </svg>
 </template>
-
-<style scoped lang="scss">
-svg {
-  cursor: pointer;
-}
-</style>

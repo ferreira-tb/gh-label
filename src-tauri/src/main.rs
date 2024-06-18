@@ -21,7 +21,10 @@ struct GitHubLabel {
 /// https://cli.github.com/manual/gh_auth_status
 #[tauri::command]
 async fn is_logged_in() -> Result<bool> {
-  let output = Command::new("auth").arg("status").output().await?;
+  let output = Command::new("auth")
+    .arg("status")
+    .output()
+    .await?;
 
   let stdout = String::from_utf8(output.stdout)?.to_lowercase();
   let logged = stdout.contains("logged in to github.com");
@@ -108,11 +111,9 @@ async fn clone_labels(from: String, to: String) -> Result<()> {
   Ok(())
 }
 
-#[tokio::main]
-async fn main() {
+fn main() {
   tauri::Builder::default()
     .plugin(tauri_plugin_dialog::init())
-    .plugin(tauri_plugin_window_state::Builder::default().build())
     .plugin(tauri_plugin_manatsu::init())
     .invoke_handler(tauri::generate_handler![
       is_logged_in,

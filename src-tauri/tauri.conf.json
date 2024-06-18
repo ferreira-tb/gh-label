@@ -1,4 +1,7 @@
 {
+  "productName": "gh-label",
+  "version": "0.5.1",
+  "identifier": "tbdev.ghlabel",
   "build": {
     "beforeDevCommand": "pnpm run vite:dev",
     "beforeBuildCommand": "pnpm run vite:build",
@@ -16,10 +19,6 @@
       "icons/icon.ico"
     ]
   },
-  "productName": "gh-label",
-  "version": "0.5.1",
-  "identifier": "tbdev.ghlabel",
-  "plugins": {},
   "app": {
     "withGlobalTauri": false,
     "windows": [
@@ -34,7 +33,12 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": {
+        "default-src": "'self'",
+        "connect-src": "ipc: http://ipc.localhost",
+        "img-src": "'self' blob: asset: http://asset.localhost",
+        "style-src": "'self' 'unsafe-inline'"
+      }
     }
   }
 }

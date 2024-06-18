@@ -25,7 +25,7 @@ withDefaults(defineProps<Props>(), {
   </svg>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 svg {
   cursor: pointer;
   fill: #888888;
